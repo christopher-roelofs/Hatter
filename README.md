@@ -12,7 +12,8 @@ measured bottleneck before considering a native rewrite.
 ## Layout
 
 - `toolchains/m68k/`: 68k Magic Cap 1.0/1.5 package tooling.
-- `toolchains/mips/`: MIPS Magic Cap 3.x package tooling and source samples.
+- `toolchains/mips/`: MIPS Magic Cap 3.x package tooling.
+- `examples/mips/`: original MIPS game sources and host rules tests.
 - `examples/sokoban68k/`: 68k adapter for the shared Sokoban source.
 - `scripts/`: package build and guest-test helpers. `test-toolchains` runs the
   standalone host checks. Guest-test helpers still expect the sibling

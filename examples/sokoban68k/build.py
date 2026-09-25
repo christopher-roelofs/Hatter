@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SAMPLE = ROOT / 'toolchains/mips/samples/Sokoban'
+SAMPLE = ROOT / 'examples/mips/Sokoban'
 sys.path.insert(0, str(ROOT / 'toolchains/m68k'))
 from build_example import build_example
 from profiles import resolve

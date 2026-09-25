@@ -3,7 +3,7 @@
 This builds a separate native 68k package, not a MIPS package running through
 translation. The MIPS game's sources and build remain unchanged.
 
-`build.py` adapts the existing `rosemary/samples/Sokoban` rules, twelve maps,
+`build.py` adapts the existing `examples/mips/Sokoban` rules, twelve maps,
 48×48 crate artwork, drawing, and touch controls. It generates C and 68k
 ObjectMaker definitions under the output's `source/` directory. This is a
 narrow, tested adapter for this sample, not a general C++ or ODEF translator.

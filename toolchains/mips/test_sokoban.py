@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SAMPLE = Path(__file__).resolve().parent / "samples" / "Sokoban"
+SAMPLE = Path(__file__).resolve().parents[2] / "examples/mips/Sokoban"
 
 class SokobanTests(unittest.TestCase):
     def test_branding_and_native_icon(self):

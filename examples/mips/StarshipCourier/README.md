@@ -7,7 +7,7 @@ interception, and Reset have now been exercised successfully.
 Build from the repository root:
 
 ```sh
-python3 toolchains/mips/build_sample.py toolchains/mips/samples/StarshipCourier --out out/rosemary-starship-courier
+python3 toolchains/mips/build_sample.py examples/mips/StarshipCourier --out out/rosemary-starship-courier
 ```
 
 The current revision removes the unmatched EndModifyFields on invalid geometry,

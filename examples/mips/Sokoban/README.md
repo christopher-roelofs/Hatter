@@ -50,10 +50,10 @@ Corner traps are intentional Sokoban behavior; use Undo or Restart.
 From the repository root:
 
 ```sh
-python3 toolchains/mips/build_sample.py toolchains/mips/samples/Sokoban --out out/rosemary-magic-sokoban-12
+python3 toolchains/mips/build_sample.py examples/mips/Sokoban --out out/rosemary-magic-sokoban-12
 cp out/rosemary-magic-sokoban-12/Sokoban.pkg 'out/rosemary-magic-sokoban-12/Magic Sokoban.pkg'
 PYTHONPATH=toolchains/mips python3 -m unittest test_sokoban test_c_package test_sdk_package
-g++ -std=c++98 -Wall -Wextra -Werror -fsanitize=address,undefined -g toolchains/mips/samples/Sokoban/tests/rules_test.cpp -o /tmp/magicrecomp-sokoban-tests
+g++ -std=c++98 -Wall -Wextra -Werror -fsanitize=address,undefined -g examples/mips/Sokoban/tests/rules_test.cpp -o /tmp/magicrecomp-sokoban-tests
 /tmp/magicrecomp-sokoban-tests
 ```
 
@@ -167,6 +167,6 @@ matching evidence to a SHA rather than silently rebuilding it.
 Not yet tested on the tablet/AArch64, shipping DataRover ROM, or 68k ROMs.
 This package targets the MIPS toolchain; no 68k compatibility is claimed.
 
-A separate [native 68k port](../../../sokoban68k/README.md) now reuses these
+A separate [native 68k port](../../sokoban68k/README.md) now reuses these
 sources and is validated on PIC-2000. Use its separate build/package; the
 MIPS `.pkg` itself is not compatible with 68k.
