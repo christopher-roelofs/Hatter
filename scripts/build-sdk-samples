@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-SDK = ROOT / 'software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples'
+SDK = ROOT / 'sdk/mips/Samples'
 DEFAULT_SAMPLES = (
     'AccessDemo', 'DigiClock', 'EmptyPackage', 'Exceptions', 'ExportSample',
     'HelloWorld', 'ImportSample', 'PackageSceneSample', 'Puzzle',

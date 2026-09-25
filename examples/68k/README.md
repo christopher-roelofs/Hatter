@@ -5,5 +5,5 @@
   while generating native 68k source and ObjectMaker definitions.
 
 For a smaller starting point, use the preserved Counter or Template projects
-under `software/68k/extracted/cookbook/Cookbook Examples/` with the
+under `sdk/68k/samples/projects/` with the
 [68k package builder](../../toolchains/m68k/README.md).

@@ -13,9 +13,9 @@ from inspect_package import SDK_INTERFACES, inspect, load_numbers
 from package_classes import RESULT_KIND, describe
 
 SOURCES = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/cookbook/Cookbook Examples'
+    'sdk/68k/samples/projects'
 COOKBOOK = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/installable/cookbook'
+    'sdk/68k/samples/packages'
 DEFFILES = SDK_INTERFACES / 'DefFiles'
 RECOVERED = Path(__file__).with_name('recovered.Def')
 

@@ -16,7 +16,7 @@ from inspect_package import (FormatError, HEAP_START, SDK_INTERFACES,
                              read_macsbug_symbol, walk_objects)
 
 COOKBOOK = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/installable/cookbook'
+    'sdk/68k/samples/packages'
 PACKAGES = sorted(COOKBOOK.glob('*.pkg'))
 
 
@@ -669,12 +669,12 @@ class ClassRecordCorpusTests(unittest.TestCase):
                 self.assertNotEqual(s['class_name'], 'none')
 
 
-SHIPPING = [Path(__file__).resolve().parents[2] / 'software/68k' / name
+SHIPPING = [Path(__file__).resolve().parents[2] / 'sdk/68k/fixtures' / name
             for name in ('BastilleR.cap', '3PrestoPPP.cap')]
 SHIPPING = [p for p in SHIPPING if p.exists()]
 
 SOURCES = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/cookbook/Cookbook Examples'
+    'sdk/68k/samples/projects'
 
 
 @unittest.skipUnless(SHIPPING and DEFFILES.is_dir(), 'shipping packages missing')

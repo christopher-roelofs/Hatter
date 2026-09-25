@@ -15,9 +15,9 @@ from objects_def import assignments
 from write_package import make_object
 
 SOURCE = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/cookbook/Cookbook Examples/Template'
+    'sdk/68k/samples/projects/Template'
 BUILT = Path(__file__).resolve().parents[2] / \
-    'software/68k/extracted/installable/cookbook/Template.pkg'
+    'sdk/68k/samples/packages/Template.pkg'
 DEFFILES = SDK_INTERFACES / 'DefFiles'
 
 

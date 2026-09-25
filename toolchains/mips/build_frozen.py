@@ -159,7 +159,7 @@ def rebuild(data):
 def main():
     out = ROOT / 'out/rosemary-inspection/rebuilt'
     reports = []
-    for path in sorted((ROOT / 'software/mips').rglob('*')):
+    for path in sorted((ROOT / 'sdk/mips').rglob('*')):
         if not path.is_file():
             continue
         with path.open('rb') as stream:
@@ -168,7 +168,7 @@ def main():
         original = path.read_bytes()
         result, parsed = rebuild(original)
         require(result == original, f'rebuilt bytes differ: {path}')
-        relative = path.relative_to(ROOT / 'software/mips')
+        relative = path.relative_to(ROOT / 'sdk/mips')
         target = out / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(result)

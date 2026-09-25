@@ -9,11 +9,11 @@ Start from a preserved cookbook example, then copy and modify its source:
 
 ```sh
 python3 toolchains/m68k/build_example.py \
-  "software/68k/extracted/cookbook/Cookbook Examples/Counter" \
+  "sdk/68k/samples/projects/Counter" \
   --profile 1.5 -o out/Counter.pkg
 ```
 
-Profiles are `cw7` (default), `1.0`, `1.5`, and `universal`; an explicit
+Profiles are `1.0-original` (default), `1.0`, `1.5`, and `universal`; an explicit
 interface directory is also accepted. Select a profile matching the guest ROM.
 Do not mix 1.0 and 1.5 class/operation numbers. The separate
 [68k Sokoban example](../../examples/68k/Sokoban/README.md) shows a larger

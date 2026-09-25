@@ -39,7 +39,7 @@ class BuildPackageTests(unittest.TestCase):
         from link_package_methods import ROOT
         from inspect_format import inspect
         out = ROOT / 'out/rosemary-test-rulessample'
-        build_sample(ROOT / 'software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/RulesSample', 'RulesSample', out)
+        build_sample(ROOT / 'sdk/mips/Samples/RulesSample', 'RulesSample', out)
         m = json.loads((out / 'package-manifest.json').read_text())
         ops = {k: v for k, v in m['operation_selectors'].items()}
         first = min(v for k, v in ops.items() if ['operation', '@' + k, 1, v] in m['exports'])

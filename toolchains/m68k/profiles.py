@@ -2,18 +2,13 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CW7 = ROOT / (
-    'software/68k/extracted/CW7-Magic-MPW/CodeWarrior Magic%2FMPW Installer/'
-    'MagicDeveloper/Interfaces')
-CW8 = ROOT / (
-    'software/68k/extracted/CW8_Gold_Tools_199601/Metrowerks CodeWarrior/'
-    'Magic Cap Support/Interfaces')
+INTERFACES = ROOT / 'sdk/68k/interfaces'
 
 PROFILES = {
-    'cw7': CW7,
-    '1.0': CW8 / 'Only 1.0',
-    '1.5': CW8 / 'Only 1.5',
-    'universal': CW8 / 'Universal',
+    '1.0-original': INTERFACES / '1.0-original',
+    '1.0': INTERFACES / '1.0',
+    '1.5': INTERFACES / '1.5',
+    'universal': INTERFACES / 'universal',
 }
 
 
@@ -33,14 +28,11 @@ def resolve(name):
 
 
 def header_directories(interfaces):
-    """Header roots, supporting both CW7's nested tree and CW8's flat tree."""
+    """Header roots for both the original nested and later flat layouts."""
     interfaces = Path(interfaces)
     candidates = [interfaces, interfaces / 'NoDebug',
                   interfaces / 'Device/Universal/NoDebug']
-    # CW8 keeps the generated system-interface headers beside the profile,
-    # under the selected precompiled system-class environment.
-    if interfaces.parent.name == 'Interfaces':
-        candidates.append(
-            interfaces.parent.parent / 'Precompiled System Classes'
-            / 'Any Communicator/NoDebug/SystemInterfaces')
+    # The later profiles share generated system-interface headers.
+    if interfaces.parent == INTERFACES and interfaces != PROFILES['1.0-original']:
+        candidates.append(INTERFACES / 'system')
     return tuple(path for path in candidates if path.is_dir())

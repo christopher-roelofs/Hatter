@@ -10,7 +10,7 @@ from inspect_format import inspect, require, span, u32
 from package_exports import package_exports
 
 ROOT = Path(__file__).resolve().parents[2]
-SDK = ROOT / 'software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper'
+SDK = ROOT / 'sdk/mips'
 
 
 def declarations(text):
@@ -163,7 +163,7 @@ def main():
         sources.append({'path': str(path.relative_to(ROOT)), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
     reports = []
     counts = collections.Counter()
-    for path in sorted((ROOT / 'software/mips').rglob('*')):
+    for path in sorted((ROOT / 'sdk/mips').rglob('*')):
         if not path.is_file():
             continue
         with path.open('rb') as stream:

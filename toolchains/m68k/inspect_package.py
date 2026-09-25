@@ -9,7 +9,7 @@ plausible name for an unread field is worse than no name at all -- it gets
 believed.
 
 What "confirmed" means here is the cookbook source/binary pairs under
-software/68k/extracted/cookbook. Each example ships its ObjectMaker
+sdk/68k/samples. Each example ships its ObjectMaker
 definitions beside the package that was built from them, so a decode can be
 checked against a statement of what the package is meant to contain: the
 definitions name every class and every instance, and the C names every method.
@@ -72,9 +72,7 @@ NUMBER_TABLES = {
 }
 # Relative to the checkout rather than to wherever this is run from, so the
 # names come out the same from the repository root and from this directory.
-SDK_INTERFACES = Path(__file__).resolve().parents[2] / (
-    'software/68k/extracted/CW7-Magic-MPW/CodeWarrior Magic%2FMPW Installer'
-    '/MagicDeveloper/Interfaces')
+SDK_INTERFACES = Path(__file__).resolve().parents[2] / 'sdk/68k/interfaces/1.0-original'
 
 
 class FormatError(ValueError):
@@ -101,7 +99,7 @@ def load_numbers(interfaces=SDK_INTERFACES):
                 if (len(parts) == 3 and parts[0].lower() == keyword.lower()
                         and parts[2].isdigit()):
                     names[int(parts[2])] = parts[1]
-        # CW8 ships the number tables as C preprocessor constants in the
+        # The later interface set ships number tables as C preprocessor constants in the
         # precompiled system-interface headers rather than as *.Def files.
         # Keep this fallback table-specific: operation and intrinsic names
         # are needed to decode code-bearing packages, not just class names.
@@ -825,8 +823,8 @@ def main(argv):
                         help='only the objects that carry code')
     parser.add_argument('--fields', action='store_true',
                         help='read each object as the fields its class declares')
-    parser.add_argument('--profile', default='cw7',
-                        help='68k interface profile: cw7, 1.0, 1.5, '
+    parser.add_argument('--profile', default='1.0-original',
+                        help='68k interface profile: 1.0-original, 1.0, 1.5, '
                              'universal, or an interface directory')
     args = parser.parse_args(argv)
 

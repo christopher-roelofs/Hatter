@@ -11,7 +11,7 @@ import struct
 from inspect_format import FormatError, inspect, require
 
 ROOT = Path(__file__).resolve().parents[2]
-SDK = ROOT / 'software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper'
+SDK = ROOT / 'sdk/mips'
 
 
 def read_elf(data, *, expected_type=2):

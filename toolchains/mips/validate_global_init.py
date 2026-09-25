@@ -77,7 +77,7 @@ def validate(data, script, code_size):
 def main():
     reports = []
     totals = collections.Counter()
-    for path in sorted((ROOT / 'software/mips').rglob('*')):
+    for path in sorted((ROOT / 'sdk/mips').rglob('*')):
         if not path.is_file():
             continue
         with path.open('rb') as f:

@@ -503,8 +503,8 @@ def main(argv):
     parser.add_argument('-d', '--define', action='append', metavar='FILE',
                         help='a definition file, in project order '
                              '(default: Objects.Def)')
-    parser.add_argument('--profile', default='cw7',
-                        help='68k interface profile: cw7, 1.0, 1.5, '
+    parser.add_argument('--profile', default='1.0-original',
+                        help='68k interface profile: 1.0-original, 1.0, 1.5, '
                              'universal, or an interface directory')
     args = parser.parse_args(argv)
     try:

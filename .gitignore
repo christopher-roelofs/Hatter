@@ -8,9 +8,10 @@ __pycache__/
 *.pkg
 *.cap
 
-# Local historical SDK distributions and package corpus are copied here for
-# reproducible development, but are not committed to this source repository.
-/software/
+# Local SDK interfaces, samples, and fixtures are copied here for reproducible
+# development, but third-party assets are not committed to this source repo.
+/sdk/*
+!/sdk/README.md
 /docs/reference/
 
 # Guest ROMs, emulator state, and user data are not development-tool sources.

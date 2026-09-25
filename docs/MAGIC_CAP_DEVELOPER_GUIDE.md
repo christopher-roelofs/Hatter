@@ -8,7 +8,7 @@ repository:
 | Magic Cap release family | CPU | Source model | Package pipeline |
 | --- | --- | --- | --- |
 | 1.0 | Motorola 68k / MC68349 | `.Def`, C, ObjectMaker definitions | MPW/CodeWarrior C compiler, linker, ObjectMaker |
-| 1.5 | Motorola 68k / MC68349 | same programming model, 1.5 interface profile | CW8 1.5 or Universal interfaces, linker, ObjectMaker |
+| 1.5 | Motorola 68k / MC68349 | same programming model, 1.5 interface profile | 1.5 or universal interfaces, linker, ObjectMaker |
 | 3.1 | MIPS / DataRover | `.cdef`, `.odef`, C/C++ and Magic Script | Class Compiler, Object Compiler, MIPS compiler, X-File Linker, Package Builder |
 
 The 68k and MIPS systems share the object-oriented runtime ideas, but they do
@@ -292,7 +292,7 @@ In this repository, the modern host-side equivalent is:
 
 ```sh
 python3 toolchains/m68k/build_example.py \
-  "software/68k/extracted/cookbook/Cookbook Examples/Counter" \
+  "sdk/68k/samples/projects/Counter" \
   -o Counter.pkg
 
 python3 toolchains/m68k/inspect_package.py --code Counter.pkg
@@ -381,16 +381,16 @@ headers, and sometimes ROM behavior. Build against the exact target profile.
 Do not mix a 1.5 `Def` file with 1.0 generated numbers merely because the
 source text looks compatible.
 
-CW8 is especially useful when targeting 1.5. Its `Magic Cap Support/Interfaces`
-directory supplies `Only 1.0`, `Only 1.5`, and `Universal` definition roots,
-and its MPW tools include `MWCMagic`, `MWLinkMagic`, and `CreateMake`. The
+The later 68k interface set is especially useful when targeting 1.5. It
+supplies 1.0, 1.5, and universal definition roots, and its original MPW tools
+include `MWCMagic`, `MWLinkMagic`, and `CreateMake`. The
 compiler wrapper supports the original Magic Cap 68k target modes and the
 linker understands code-resource output. Use the matching profile as a whole:
 the 1.5 class, operation, and intrinsic definitions are not interchangeable
 with 1.0 definitions. `Universal` is a compatibility profile, not proof that
 one package will run unchanged on every ROM.
 
-The host package builder uses CW8's 1.5 interfaces for the corresponding
+The host package builder uses the 1.5 interfaces for the corresponding
 profile. It does not require running CodeWarrior or ObjectMaker on a classic
 Mac.
 
@@ -578,7 +578,7 @@ preserved MIPS SDK samples. It does not build or run the emulator.
 ```sh
 # Build from the example source directory.
 python3 toolchains/m68k/build_example.py \
-  "software/68k/extracted/cookbook/Cookbook Examples/Counter" \
+  "sdk/68k/samples/projects/Counter" \
   -o out/Counter.pkg
 
 # Inspect structure and native call sites.
@@ -588,7 +588,7 @@ python3 toolchains/m68k/inspect_package.py --fields --code \
 # Install and exercise the package with the matching ROM in magicrecomp.
 ```
 
-Select the CW8-era 1.5 profile explicitly for Magic Cap 1.5 devices. Guest
+Select the 1.5 profile explicitly for Magic Cap 1.5 devices. Guest
 installation and behavior testing belong to the sibling `magicrecomp`
 workspace.
 
@@ -598,7 +598,7 @@ The MIPS builder accepts an SDK sample name or a project directory:
 
 ```sh
 python3 toolchains/mips/build_sample.py \
-  software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/HelloWorld
+  sdk/mips/Samples/HelloWorld
 
 python3 toolchains/mips/inspect_format.py path/to/package.pkg
 

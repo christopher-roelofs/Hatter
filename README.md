@@ -14,8 +14,8 @@ is to copy a working example, edit its source, then build its package:
 
 | Target | Start from | Build command |
 | --- | --- | --- |
-| 68k 1.0/1.5 | `software/68k/extracted/cookbook/Cookbook Examples/Counter` | `python3 toolchains/m68k/build_example.py <project-dir> --profile 1.5 -o out/MyApp.pkg` |
-| MIPS 3.x | `software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/HelloWorld` or `examples/mips/Sokoban/` | `python3 toolchains/mips/build_sample.py <project-dir> --out out/MyApp` |
+| 68k 1.0/1.5 | `sdk/68k/samples/projects/Counter` | `python3 toolchains/m68k/build_example.py <project-dir> --profile 1.5 -o out/MyApp.pkg` |
+| MIPS 3.x | `sdk/mips/Samples/HelloWorld` or `examples/mips/Sokoban/` | `python3 toolchains/mips/build_sample.py <project-dir> --out out/MyApp` |
 
 Run these from the Hatter root. Use `--profile 1.0` for older 68k ROMs. For a
 cross-target game, [Magic Sokoban](examples/mips/Sokoban/README.md) and its
@@ -46,7 +46,7 @@ the package compiler. Build outputs are written under ignored `out/`.
 - `examples/`: original application source; never substitute a generated
   package in `out/` for this source.
 - `docs/`: developer instructions, not reverse-engineering logs.
-- `software/`: ignored local copies of the historical interfaces, sample
+- `sdk/`: ignored local copies of the historical interfaces, sample
   sources, and small package fixtures the builders or tests need. See
   [setup](docs/SETUP.md); the complete SDK archives stay in `magicrecomp`.
 

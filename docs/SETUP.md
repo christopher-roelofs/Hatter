@@ -21,9 +21,9 @@ because they contain original third-party distributions:
 
 | Target | Required local path |
 | --- | --- |
-| MIPS 3.x (Apollo) | `software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/` |
-| 68k 1.0 | `software/68k/extracted/CW7-Magic-MPW/CodeWarrior Magic%2FMPW Installer/MagicDeveloper/Interfaces/` |
-| 68k 1.5 | `software/68k/extracted/CW8_Gold_Tools_199601/Metrowerks CodeWarrior/Magic Cap Support/Interfaces/` |
+| MIPS 3.x (Apollo) | `sdk/mips/Interfaces/` and `sdk/mips/Samples/` |
+| 68k 1.0 | `sdk/68k/interfaces/1.0-original/` or `sdk/68k/interfaces/1.0/` |
+| 68k 1.5 | `sdk/68k/interfaces/1.5/` and `sdk/68k/interfaces/system/` |
 
 The MIPS SDK path must include `Interfaces/` and `Samples/`; Hatter's host
 builder does not need the historical compiler binaries or libraries.
@@ -32,8 +32,8 @@ Sputnik or Macintosh Simulator variants. The 68k copy similarly omits debug
 interfaces and keeps the 1.0/1.5 profiles used by the host builder. Restore
 additional profiles from the complete archives in `magicrecomp` if future
 toolchain work needs them.
-The 68k examples also use
-`software/68k/extracted/cookbook/Cookbook Examples/` as starter projects.
+The 68k examples also use `sdk/68k/samples/projects/` as starter projects;
+the matching `samples/packages/` and `sdk/68k/fixtures/` are test inputs.
 Hatter's local workspace contains the necessary interfaces and sample sources,
 not the complete historical distributions; a fresh clone needs these assets
 supplied separately. The CodeWarrior Pro 1 Windows archive and classic-Mac VM

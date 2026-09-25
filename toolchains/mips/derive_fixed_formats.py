@@ -129,7 +129,7 @@ def main():
         key, decls = declarations((SDK / 'Interfaces/DefFiles/Interfaces' / name).read_text())
         interfaces[key] = decls
     comparisons = []
-    for path in sorted((ROOT / 'software/mips').rglob('*')):
+    for path in sorted((ROOT / 'sdk/mips').rglob('*')):
         if not path.is_file():
             continue
         with path.open('rb') as f:

@@ -30,8 +30,8 @@ from inspect_package import SDK_INTERFACES, inspect, load_numbers
 from objects_def import project_order
 
 ROOT = Path(__file__).resolve().parents[2]
-EXAMPLES = ROOT / 'software/68k/extracted/cookbook/Cookbook Examples'
-PACKAGES = ROOT / 'software/68k/extracted/installable/cookbook'
+EXAMPLES = ROOT / 'sdk/68k/samples/projects'
+PACKAGES = ROOT / 'sdk/68k/samples/packages'
 OUTPUT = Path(__file__).with_name('system_classes.json')
 
 DEFINE_CLASS = re.compile(r'Define\s+Class\s+(\w+)\s*;')
