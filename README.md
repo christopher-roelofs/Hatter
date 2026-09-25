@@ -46,9 +46,9 @@ the package compiler. Build outputs are written under ignored `out/`.
 - `examples/`: original application source; never substitute a generated
   package in `out/` for this source.
 - `docs/`: developer instructions, not reverse-engineering logs.
-- `software/`: ignored local copies of historical SDK interfaces, tools,
-  source samples, and package fixtures. See [setup](docs/SETUP.md); these
-  archives are not committed to Git.
+- `software/`: ignored local copies of the historical interfaces, sample
+  sources, and small package fixtures the builders or tests need. See
+  [setup](docs/SETUP.md); the complete SDK archives stay in `magicrecomp`.
 
 The builders are Python programs that invoke native cross-compilers. A native
 rewrite is not planned without a measured bottleneck.

@@ -21,16 +21,23 @@ because they contain original third-party distributions:
 
 | Target | Required local path |
 | --- | --- |
-| MIPS 3.x | `software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/` |
+| MIPS 3.x (Apollo) | `software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/` |
 | 68k 1.0 | `software/68k/extracted/CW7-Magic-MPW/CodeWarrior Magic%2FMPW Installer/MagicDeveloper/Interfaces/` |
 | 68k 1.5 | `software/68k/extracted/CW8_Gold_Tools_199601/Metrowerks CodeWarrior/Magic Cap Support/Interfaces/` |
 
-The MIPS SDK path must include `Interfaces/`, `Libraries/`, and `Samples/`.
+The MIPS SDK path must include `Interfaces/` and `Samples/`; Hatter's host
+builder does not need the historical compiler binaries or libraries.
+The local copy retains the Apollo headers used by this builder, not the
+Sputnik or Macintosh Simulator variants. The 68k copy similarly omits debug
+interfaces and keeps the 1.0/1.5 profiles used by the host builder. Restore
+additional profiles from the complete archives in `magicrecomp` if future
+toolchain work needs them.
 The 68k examples also use
 `software/68k/extracted/cookbook/Cookbook Examples/` as starter projects.
-Hatter's local workspace contains copies of these assets; a fresh clone needs
-them supplied separately. The CodeWarrior Pro 1 Windows archive and classic-Mac
-VM are **not** required for the host package builders.
+Hatter's local workspace contains the necessary interfaces and sample sources,
+not the complete historical distributions; a fresh clone needs these assets
+supplied separately. The CodeWarrior Pro 1 Windows archive and classic-Mac VM
+are **not** required for the host package builders.
 
 Check the installation with:
 

@@ -42,7 +42,6 @@ For 68k, start with `Counter` or `TemplateWithButtons`. For MIPS, start with
 Useful repository entry points:
 
 - [Set up the local SDKs and compilers](SETUP.md)
-- [MIPS SDK README](../software/mips/sdk/README.md)
 - [68k build workflow](../toolchains/m68k/README.md)
 - [MIPS build workflow](../toolchains/mips/README.md)
 - [Cross-target game example](../examples/mips/Sokoban/README.md)
@@ -422,12 +421,11 @@ ELF → LinkXFile → transition-vector X-file
 all outputs → BuildMagicCapPackage → frozen package
 ```
 
-The preserved SDK tools are under:
-`software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Tools/`.
 The original environment expected MPW on a Power Macintosh and the SDK's
-libraries. The repository's Rosemary tools reproduce the useful front end and
-host-side build path on Linux, but the historical binaries are not assumed to
-run natively on a modern host.
+compiler binaries and libraries. Hatter's host toolchain does not invoke those
+historical binaries; its local SDK copy contains the interfaces and samples
+needed by the modern builders. The complete original distribution remains in
+the sibling `magicrecomp` workspace.
 
 ### `.cdef`: classes and interfaces
 
