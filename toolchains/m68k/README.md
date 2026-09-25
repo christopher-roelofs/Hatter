@@ -16,7 +16,7 @@ python3 toolchains/m68k/build_example.py \
 Profiles are `cw7` (default), `1.0`, `1.5`, and `universal`; an explicit
 interface directory is also accepted. Select a profile matching the guest ROM.
 Do not mix 1.0 and 1.5 class/operation numbers. The separate
-[68k Sokoban example](../../examples/sokoban68k/README.md) shows a larger
+[68k Sokoban example](../../examples/68k/Sokoban/README.md) shows a larger
 application and a shared-rules cross-target project.
 
 Inspect the result before installation:

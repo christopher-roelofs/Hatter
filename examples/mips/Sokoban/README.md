@@ -24,7 +24,7 @@ out/sokoban-rules-test
 
 The installable package is `out/Sokoban/Sokoban.pkg`. Install and play it with
 a Magic Cap 3.x guest in the sibling emulator repository. Do not copy its MIPS
-package to a 68k device; use the [68k adapter](../../sokoban68k/README.md).
+package to a 68k device; use the [68k adapter](../../68k/Sokoban/README.md).
 
 For a new game, copy this project directory and update its name, interface,
 definitions, instances, and native methods together. The builder uses the

@@ -10,4 +10,4 @@ the historical SDK samples. Both are built from their `.cpp`, `.cdef`, and
 
 Keep these sources together with `toolchains/mips/` and the historical SDK under
 `software/mips/sdk/`. The 68k adaptation of Sokoban is in
-[`examples/sokoban68k/`](../sokoban68k/README.md).
+[`examples/68k/Sokoban/`](../68k/Sokoban/README.md).

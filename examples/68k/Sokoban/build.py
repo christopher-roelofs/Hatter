@@ -10,7 +10,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 SAMPLE = ROOT / 'examples/mips/Sokoban'
 sys.path.insert(0, str(ROOT / 'toolchains/m68k'))
 from build_example import build_example
