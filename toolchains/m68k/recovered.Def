@@ -1,0 +1,45 @@
+//
+//	Classes the shipped SDK does not describe, recovered from the packages.
+//
+//	Everything here is written in ObjectMaker's own syntax and read the same
+//	way its definition files are, but none of it came with the SDK: each
+//	class below is one an example instantiates and sets fields on while the
+//	`DefFiles` that ship with CodeWarrior Magic declare it with no fields at
+//	all. The examples were built against a version that had them.
+//
+//	A layout here is only written down once the bytes say what it is. Nothing
+//	is inferred from a name.
+//
+
+//	StackTemplateWithIndex's index view is a ContentListView and its
+//	definitions set eight fields on it that `ListView.Def` has never heard
+//	of. Its record is exactly twenty-four bytes longer than the fields the
+//	SDK knows account for, and the eight values the file states land in those
+//	twenty-four bytes in the order it states them:
+//
+//	    offset1: <15.0>            00 00 0f 00
+//	       key1: 7                 00 00 00 07
+//	      type1: 0.s               00 00
+//	     flags1: 2.s               00 02
+//	    offset2: <100.0>           00 00 64 00
+//	       key2: operation_SendSize  00 00 11 3e
+//	      type2: 22.s              00 16
+//	     flags2: 1.s               00 01
+//
+//	which is two column descriptors of twelve bytes: where the column sits,
+//	what it asks each item for, and how to ask. `.s` is how the file writes a
+//	SignedShort, and the offsets are written as coordinates, so they are
+//	Microns.
+
+Define Class ContentListView;
+	inherits from FilteredListView;
+
+	field offset1: Micron;
+	field key1: Unsigned;
+	field type1: SignedShort;
+	field flags1: SignedShort;
+	field offset2: Micron;
+	field key2: Unsigned;
+	field type2: SignedShort;
+	field flags2: SignedShort;
+End Class;

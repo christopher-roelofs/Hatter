@@ -1,0 +1,143 @@
+{
+ "package_sha256": "1367a8b0e827ffacf1960a680882d5bfee3d196a85c7b342c0624a9154c296d0",
+ "package_bytes": 22864,
+ "source_sha256": [
+  "04f315142dd0a7dc6d024a4daeb16ed031780685ee6d5d31c7f40ed3ee26438d"
+ ],
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/SpeedScrollSample (unmodified; build_sample.py)",
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "InstallSpecifier": 3,
+  "Box": 4,
+  "ToolButton": 5,
+  "Image": 6,
+  "PristineLookupTable": 7,
+  "TextHeap": 8,
+  "StaticObjectNameDictionary": 9,
+  "ObjectValueHashTable": 10,
+  "DataList": 11,
+  "PackageData": 12,
+  "PackageExportTable": 13,
+  "PackageExportHashEntries": 14,
+  "CliqueNameTable": 15,
+  "Text": 16,
+  "CodePackageCluster": 17,
+  "UnlinkedClassWithInstances": 18,
+  "ChooseableTool": 19,
+  "RestoresPreviousTool": 20,
+  "Viewable": 21,
+  "SpeedScrollerTool": 22,
+  "SpeedScroller": 23,
+  "CanStretchSpeedScroller": 24,
+  "CanChangeSpeedScrollerImage": 25,
+  "SampleSpeedScroller": 26
+ },
+ "exports": [
+  [
+   "class",
+   "@SpeedScrollerTool",
+   1,
+   22
+  ],
+  [
+   "class",
+   "@SpeedScroller",
+   1,
+   23
+  ],
+  [
+   "class",
+   "@CanStretchSpeedScroller",
+   1,
+   24
+  ],
+  [
+   "class",
+   "@CanChangeSpeedScrollerImage",
+   1,
+   25
+  ],
+  [
+   "class",
+   "@SampleSpeedScroller",
+   1,
+   26
+  ],
+  [
+   "operation",
+   "@CreateBufferedImage",
+   1,
+   12
+  ],
+  [
+   "operation",
+   "@SourceViewBounds",
+   1,
+   13
+  ],
+  [
+   "operation",
+   "@SetSourceViewBounds",
+   1,
+   14
+  ],
+  [
+   "operation",
+   "@SourcePixels",
+   1,
+   15
+  ],
+  [
+   "operation",
+   "@SetSourcePixels",
+   1,
+   16
+  ],
+  [
+   "operation",
+   "@OtherActorFrequency",
+   1,
+   17
+  ],
+  [
+   "operation",
+   "@SetOtherActorFrequency",
+   1,
+   18
+  ]
+ ],
+ "methods": {
+  "SpeedScrollerTool_TouchTarget": 3,
+  "SpeedScroller_Press": 4,
+  "SpeedScroller_Draw": 5,
+  "SpeedScroller_CanStretch": 6,
+  "SpeedScroller_Init": 7,
+  "SpeedScroller_CreateBufferedImage": 8,
+  "SpeedScroller_SourceViewBounds": 9,
+  "SpeedScroller_SetSourceViewBounds": 10,
+  "CanStretchSpeedScroller_CanStretch": 11,
+  "CanStretchSpeedScroller_Centered": 12,
+  "CanStretchSpeedScroller_ConstrainSize": 13,
+  "CanStretchSpeedScroller_MoveSubviewsBy": 14,
+  "CanStretchSpeedScroller_SetContentBox": 15,
+  "CanChangeSpeedScrollerImage_SetImage": 16,
+  "CanChangeSpeedScrollerImage_Swallow": 17
+ },
+ "observed": {
+  "attempt 1": "install -> \"Cleaning up...\" restart: [exc] AdEL in UartARxInterruptHandler after AppendMethodListDataToExtraFormat overran into the serial driver (store watch: pc=13C89ED8..EE8 wrote 08/xx/11 at 003CCE58..5B); cause: SampleSpeedScroller record with a present, count-0 method table",
+  "attempt 2": "installs (22K) but the trinkets tool page is empty: ToolButton_Draw/Image never run; live Box list still held the raw selector 0x34 and the button had no superview",
+  "attempt 3": "with superview set and the header bit 0x08000000 on list-bearing objects: the eye tool button appears on the trinkets page; choosing it and touching the Storeroom creates a 40x40 SampleSpeedScroller; SpeedScroller Draw (t7=0xF8B) ran from package code at 003C3958; 0 non-interrupt exceptions apart from the ROM's break 0xf in RemoteDebugMessage (EmbeddedCode_TellDebuggerAboutPackage)"
+ },
+ "screens": [
+  "docs/images/rosemary-speedscroll-tool.png",
+  "docs/images/rosemary-speedscroll.png"
+ ],
+ "bus_faults": 0,
+ "logs": [
+  "out/rosemary-sample-SpeedScrollSample/s6.log (store watch)",
+  "out/rosemary-sample-SpeedScrollSample/s7.log",
+  "out/rosemary-sample-SpeedScrollSample/u0..u8.log"
+ ]
+}

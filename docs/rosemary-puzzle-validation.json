@@ -1,0 +1,54 @@
+{
+ "package_sha256": "9c55e348f70ca812c63b4e910101af4beaf5711a24dbec754dd526e44e73fa08",
+ "package_bytes": 27182,
+ "source_sha256": [
+  "3c42115ad91d5a0e955ef8a94896daf35646f97eaeaf9a98a031920f05e34047"
+ ],
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/Puzzle (unmodified; build_sample.py)",
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "InstallSpecifier": 3,
+  "Text": 4,
+  "Image": 5,
+  "Scene": 6,
+  "TextField": 7,
+  "BorderImage": 8,
+  "SimpleActionButton": 9,
+  "Switch": 10,
+  "Icon": 11,
+  "PristineLookupTable": 12,
+  "TextHeap": 13,
+  "StaticObjectNameDictionary": 14,
+  "ObjectValueHashTable": 15,
+  "DataList": 16,
+  "PackageData": 17,
+  "PackageExportTable": 18,
+  "PackageExportHashEntries": 19,
+  "CliqueNameTable": 20,
+  "CodePackageCluster": 21,
+  "UnlinkedClassWithInstances": 22,
+  "Box": 23,
+  "PuzzleBox": 24
+ },
+ "methods": {
+  "PuzzleBox_ApplyImage": 3,
+  "PuzzleBox_CanAcceptCoupon": 4,
+  "PuzzleBox_Draw": 5,
+  "PuzzleBox_Idle": 6,
+  "PuzzleBox_Swallow": 7,
+  "PuzzleBox_Tap": 8,
+  "PuzzleBox_SetAutoPlay": 9,
+  "PuzzleBox_SetUseImage": 10,
+  "PuzzleBox_SetPuzzleImage": 11,
+  "PuzzleBox_ResetGame": 12,
+  "PuzzleBox_ResetConfirm": 13
+ },
+ "observed": "installs (21K) an Icon onto the Game room shelf (InstallSpecifier -> iGameRoomShelf); the icon appears next to the cat clock; tapping it opens the Puzzle scene (picture tiles, use picture / auto play, scramble); 0 non-interrupt exceptions; scramble -> \"Really scramble the tiles?\" -> yes: the tiles are shuffled by package code (docs/images/rosemary-puzzle.png); 0 non-interrupt exceptions",
+ "bus_faults": 0,
+ "logs": [
+  "out/rosemary-sample-Puzzle/*.log"
+ ],
+ "screen": "docs/images/rosemary-puzzle.png"
+}

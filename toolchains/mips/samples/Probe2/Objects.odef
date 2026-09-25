@@ -1,0 +1,119 @@
+//
+//	HelloWorld
+//
+//	Almost the simplest Magic Capª Package
+//
+//	General Magic Developer Technical Support
+//	Copyright 1992-1997 General Magic, Inc.
+//	All rights reserved.
+//
+
+
+//	An object definition file is required for every package.  This file contains a textual
+//	representation of the static objects, (i.e. objects not created at runtime) in a package.
+
+
+read "MagicCap.cdef";
+read "Probe2.cdef";
+
+//	The SoftwarePackageContents	object stores information that is used when the package
+//  is initially loaded, activated after power-down, as well as throughout the operation
+//  of the package.
+instance SoftwarePackageContents contents 'Probe2';
+    dateCreated: 0;
+    timeCreated: 0;
+   dateModified: 0;
+   timeModified: 0;					// The 4 date and time fields are filled in by the system
+   autoActivate: true;
+installationList: (ObjectList installationList);
+         author: iGeneralMagic;			// If you want your own name here, create a FullContact
+      publisher: iGeneralMagic;			// object and attach it here
+    versionText: nilObject;
+  helpOnObjects: (ObjectList helpForObjects);
+sceneIndexicalList: nilObject;
+stackIndexicalList: nilObject;
+   startupScene: nilObject;
+    startupItem: nilObject;
+   creditsScene: nilObject;
+           logo: iTurkey;
+responseCardStationery: iDefaultStationery;
+ dontDeactivate: false;
+end instance;
+
+//	The list of objects we want to have installed into the system.
+//	We have a standard door to be installed in the Hallway, so we specify our Scene
+instance ObjectList installationList;
+          entry1: iInstallationQueue;
+          entry1: (Scene packageScene);
+end instance;
+
+//	The title of the Scene (as seen in Magic Cap) is the name of the scene object
+instance Scene packageScene 'Probe2';
+ relativeOrigin: <0.0,-8.0>;	// fractional part indicates a value in pixels
+    contentSize: <480.0,256.0>;
+      viewFlags: 0x11005200;	// viewFlags are defined in Utilities.h  (see Utils menu)
+     labelStyle: iBook12;		// The iBook12 is used to access indexicals, or system globals
+          color: 0xFF555555;
+       altColor: 0xFF000000;
+         shadow: nilObject;
+          sound: nilObject;
+         border: nilObject;
+        isPlace: false;
+         frozen: false;
+    useCardName: false;
+        visited: false;
+     blankTitle: false;
+  messageViewer: false;
+suppressGrayLine: false;
+stepBackWhenEmpty: false;
+      canDrawIn: false;
+     autoPencil: false;
+    sceneDrawer: false;
+    oneCardOnly: false;
+      ephemeral: false;
+   addToHistory: true;
+suppressDateTime: false;
+sceneDrawerBank: false;
+         locked: false;
+expandMiniCards: false;
+     sceneTools: false;
+heightResizable: false;
+ignoreCardDefaultTool: false;
+  stepBackScene: nilObject;
+   stepBackSpot: nilObject;
+          image: nilObject;
+	  additions: nilObject;
+	     screen: nilObject;
+        subview: (Probe2 probe);
+end instance;
+
+//	An instance of the class that we defined just for HelloWorld.
+//	The Probe2 class is defined in HelloWorld.cdef
+instance Probe2 probe 'Probe';
+ relativeOrigin: <0.0,-14.0>;
+    contentSize: <90.0,90.0>;
+      viewFlags: 0x7818D200;
+     labelStyle: iBook12;
+          color: 0xFFFFFFFF;
+       altColor: 0xFF000000;
+         shadow: nilObject;
+          sound: iSendSound;
+end instance;
+
+// The help list is a list of paired entries. The first entry of the pair is the object
+// that can display help. The second entry of the pair is the help for that object.
+instance ObjectList helpForObjects;
+          entry: (Scene packageScene); 				// the scene for which we want help
+          entry: (Text packageSceneInformation); 	// help for our packageScene
+end instance;
+
+//	Now for our help text
+instance Text packageSceneInformation;
+           text: 'Yer guide to AhoyWorld\nThem seamen shout \u2018ahoy\u2019 whey they\u2019re callin ye.';
+end instance;
+
+// That's all there is
+
+// Note that in this example, all text that appears here is replaced by other text in the file
+// USA.Package.Phrases to illustrate localization.  If the file USA.Package.Phrases was not present,
+// or was empty, you would see the text that appears here in the package when it runs.

@@ -1,0 +1,254 @@
+read "MagicCap.cdef";
+read "Sokoban.cdef";
+
+instance SoftwarePackageContents contents 'Magic Sokoban';
+    dateCreated: 0;
+    timeCreated: 0;
+    dateModified: 0;
+    timeModified: 0;
+    autoActivate: true;
+    installationList: (ObjectList installationList);
+    author: iGeneralMagic;
+    publisher: iGeneralMagic;
+    versionText: nilObject;
+    helpOnObjects: (ObjectList helpForObjects);
+    sceneIndexicalList: nilObject;
+    stackIndexicalList: nilObject;
+    startupScene: nilObject;
+    startupItem: nilObject;
+    creditsScene: nilObject;
+    logo: (Image crateIcon);
+    responseCardStationery: iDefaultStationery;
+    dontDeactivate: false;
+end instance;
+
+instance ObjectList installationList;
+    entry: iInstallationQueue;
+    entry: (InstallSpecifier iconInstaller);
+end instance;
+
+indexical iStatus = (TextField statusField);
+instance ObjectList helpForObjects;
+    entry: (Scene packageScene);
+    entry: (Text helpText);
+end instance;
+
+instance Text helpText;
+    text: 'Magic Sokoban\nTap a square beside the solid player to move. Push X crates onto all dots; * marks a filled goal. You cannot pull crates. Undo reverses one move. Restart retries the current puzzle; Next unlocks when solved.';
+end instance;
+instance Text initialStatus;
+    text: 'Tap beside the player. Push every crate onto a dot.';
+end instance;
+
+instance Scene packageScene 'Magic Sokoban';
+    relativeOrigin: <0.0,-8.0>;
+    contentSize: <480.0,256.0>;
+    viewFlags: 0x11005200;
+    labelStyle: iBook12;
+    color: 0xFF555555;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: nilObject;
+    border: nilObject;
+    isPlace: false;
+    frozen: false;
+    useCardName: false;
+    visited: false;
+    blankTitle: false;
+    messageViewer: false;
+    suppressGrayLine: false;
+    stepBackWhenEmpty: false;
+    canDrawIn: false;
+    autoPencil: false;
+    sceneDrawer: false;
+    oneCardOnly: false;
+    ephemeral: false;
+    addToHistory: true;
+    suppressDateTime: false;
+    sceneDrawerBank: false;
+    locked: false;
+    expandMiniCards: false;
+    sceneTools: false;
+    heightResizable: false;
+    ignoreCardDefaultTool: false;
+    stepBackScene: nilObject;
+    stepBackSpot: nilObject;
+    image: nilObject;
+    additions: nilObject;
+    screen: nilObject;
+    subview: (SokobanBoard board);
+    subview: (TextField statusField);
+    subview: (SimpleActionButton resetButton);
+    subview: (SimpleActionButton undoButton);
+    subview: (SimpleActionButton nextButton);
+end instance;
+
+instance TextField statusField;
+    relativeOrigin: <0.0,108.0>;
+    contentSize: <440.0,22.0>;
+    viewFlags: 0x70019200;
+    labelStyle: iBook12Center;
+    color: 0xFF000000;
+    altColor: 0xFFFFFFFF;
+    shadow: nilObject;
+    sound: nilObject;
+    border: nilObject;
+    fieldFlags: 0x80000001;
+    dataStore: (Text initialStatus);
+    baseStyle: iBook12Center;
+end instance;
+
+instance SokobanBoard board;
+    relativeOrigin: <-45.0,-5.0>;
+    contentSize: <300.0,198.0>;
+    viewFlags: 0x700D1200;
+    labelStyle: iBook12;
+    color: 0xFF000000;
+    altColor: 0xFFFFFFFF;
+    shadow: nilObject;
+    sound: iTouchSound;
+    border: iStandardButtonBorderUp;
+    level: 0;
+    player: 27;
+    boxA: 19;
+    boxB: 21;
+    moves: 0;
+    pushes: 0;
+    undoPlayer: 27;
+    undoA: 19;
+    undoB: 21;
+    undoMoves: 0;
+    undoPushes: 0;
+    canUndo: 0;
+end instance;
+
+instance SimpleActionButton resetButton 'Restart';
+    relativeOrigin: <170.0,-45.0>;
+    contentSize: <90.0,27.0>;
+    viewFlags: 0x70103200;
+    labelStyle: iLargeButtonStyle;
+    color: 0xFF000000;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: iTouchSound;
+    image: nilObject;
+    border: iStandardButtonBorderUp;
+    target: (SokobanBoard board);
+    operation: operation_Restart;
+end instance;
+
+instance SimpleActionButton undoButton 'Undo';
+    relativeOrigin: <170.0,0.0>;
+    contentSize: <90.0,27.0>;
+    viewFlags: 0x70103200;
+    labelStyle: iLargeButtonStyle;
+    color: 0xFF000000;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: iTouchSound;
+    image: nilObject;
+    border: iStandardButtonBorderUp;
+    target: (SokobanBoard board);
+    operation: operation_UndoMove;
+end instance;
+
+instance SimpleActionButton nextButton 'Next';
+    relativeOrigin: <170.0,45.0>;
+    contentSize: <90.0,27.0>;
+    viewFlags: 0x70103200;
+    labelStyle: iLargeButtonStyle;
+    color: 0xFF000000;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: iTouchSound;
+    image: nilObject;
+    border: iStandardButtonBorderUp;
+    target: (SokobanBoard board);
+    operation: operation_NextPuzzle;
+end instance;
+
+instance InstallSpecifier iconInstaller;
+    install: (Icon gameIcon);
+    receiver: iGameRoomShelf;
+    fallback: iInstallationQueue;
+end instance;
+instance Icon gameIcon 'Magic Sokoban';
+    relativeOrigin: <0.0,-26.5>;
+    contentSize: <53.0,53.0>;
+    viewFlags: 0x50081200;
+    labelStyle: iBook12Center;
+    color: 0xFFFFFFFF;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: iTouchSound;
+    image: (Image crateIcon);
+    destination: (Scene packageScene);
+    nativeContainer: iGameRoomShelf;
+    nativePosition: <0.0,-26.5>;
+end instance;
+
+instance Image crateIcon;
+    nextImage: nilObject;
+    previousImage: nilObject;
+    rectImage: false;
+    hasMask: false;
+    allBlack: false;
+    containsName: false;
+    packed: false;
+    aligned32: true;
+    finePointing: false;
+    imageSize: 48,48;
+    resolution: 256.s;
+    depth: 2.s;
+    centerPt: 24,24;
+    // Native 2-bit pixels: space=white, .=light gray, o=dark gray, #=black.
+    // |                                          ##    |
+    // |                                          ##    |
+    // |                                          ##    |
+    // |                                         ####   |
+    // |                                         ####   |
+    // |                                      ##########|
+    // |               ########################  ####   |
+    // |               ########################  ####   |
+    // |              #.....................###   ##    |
+    // |           ###.....................#oo#   ##    |
+    // |           ###.....................#oo#   ##    |
+    // |         ##......................##ooo#         |
+    // |        #.......................#ooooo#         |
+    // |        #.......................#ooooo#         |
+    // |      ##########################oooooo#         |
+    // |      ##......................##o##ooo#         |
+    // |      ##......................##o##ooo#         |
+    // |      ##.####################.##o##ooo#         |
+    // |      ##.###...............##.##o##ooo#     #   |
+    // |      ##.###...............##.##o##ooo#     #   |
+    // |      ##...###............###.##o##ooo#     #   |
+    // |      ##....###.........###...##o##ooo#  #######|
+    // |      ##....###.........###...##o##ooo#  #######|
+    // |      ##......###......###....##o##ooo#     #   |
+    // |      ##.......###...###......##o##ooo#     #   |
+    // |      ##.......###...###......##o##ooo#     #   |
+    // |      ##.........######.......##o##ooo#         |
+    // |      ##..........###.........##o##ooo#         |
+    // |      ##..........###.........##o##ooo#         |
+    // |      ##.........######.......##o##ooo#         |
+    // |      ##.......###...###......##o##ooo#         |
+    // |      ##.......###...###......##o##ooo#         |
+    // |      ##......###......###....##o##ooo#         |
+    // |      ##....###.........###...##o##ooo#         |
+    // |      ##....###.........###...##o##ooo#         |
+    // |      ##...###............###.##o##o##          |
+    // |      ##.###...............##.##ooo####         |
+    // |      ##.###...............##.##ooo####         |
+    // |     ###.####################.##o##....#####    |
+    // |  ###.##......................###.....###...### |
+    // |  ###.##......................###.....###...### |
+    // |     #################################.#####    |
+    // |         #####...######....#####....###         |
+    // |         #####...######....#####....###         |
+    // |              ####.....####.....####            |
+    // |                  #####....#####                |
+    // |                  #####....#####                |
+    // |                       ####                     |
+    data: $ 000000000000000000000f00000000000000000000000f00000000000000000000000f00000000000000000000003fc0000000000000000000003fc00000000000000000000fffff00000003fffffffffffc3fc000000003fffffffffffc3fc00000000d5555555555fc0f00000003f55555555557ac0f00000003f55555555557ac0f0000003d55555555557eac00000000d55555555555eaac00000000d55555555555eaac0000000fffffffffffffaaac0000000f55555555555fbeac0000000f55555555555fbeac0000000f7fffffffffdfbeac0000000f7f55555557dfbeac00c0000f7f55555557dfbeac00c0000f57f555555fdfbeac00c0000f55fd5555fd5fbeac3fff000f55fd5555fd5fbeac3fff000f555fd557f55fbeac00c0000f5557f57f555fbeac00c0000f5557f57f555fbeac00c0000f55557ffd555fbeac0000000f55555fd5555fbeac0000000f55555fd5555fbeac0000000f55557ffd555fbeac0000000f5557f57f555fbeac0000000f5557f57f555fbeac0000000f555fd557f55fbeac0000000f55fd5555fd5fbeac0000000f55fd5555fd5fbeac0000000f57f555555fdfbef00000000f7f55555557dfabfc0000000f7f55555557dfabfc0000003f7fffffffffdfbd57ff000fdf55555555555fd55fd5fc0fdf55555555555fd55fd5fc003ffffffffffffffff7ff0000003ff57ffd57ff55fc000000003ff57ffd57ff55fc00000000000ff557fd55ff000000000000000ffd57ff00000000000000000ffd57ff00000000000000000003fc0000000000;
+end instance;

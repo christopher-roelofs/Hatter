@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""Build every preserved Rosemary SDK sample from its source directory.
+
+This is a source/build smoke matrix, not a guest-behavior test.  It is useful
+for catching front-end or package-writer regressions across the whole SDK
+without requiring a manually maintained list of commands.
+"""
+import argparse
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+SDK = ROOT / 'software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples'
+DEFAULT_SAMPLES = (
+    'AccessDemo', 'DigiClock', 'EmptyPackage', 'Exceptions', 'ExportSample',
+    'HelloWorld', 'ImportSample', 'PackageSceneSample', 'Puzzle',
+    'RulesSample', 'Scenes', 'ScrollableTextField', 'SimpleStack',
+    'SpeedScrollSample', 'TicTacToe', 'TimeMinder', 'WindowTool',
+)
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', type=Path, default=ROOT / 'out/rosemary-samples')
+    parser.add_argument('--sample', action='append', choices=DEFAULT_SAMPLES,
+                        help='build only this sample; may be repeated')
+    parser.add_argument('--keep-going', action='store_true',
+                        help='build all samples and report failures at the end')
+    args = parser.parse_args(argv)
+    names = args.sample or DEFAULT_SAMPLES
+    failures = []
+    for name in names:
+        target = args.out / name
+        command = [sys.executable, str(ROOT / 'toolchains/mips/build_sample.py'),
+                   name, '--out', str(target)]
+        print(f'{name}:', flush=True)
+        result = subprocess.run(command, cwd=ROOT)
+        if result.returncode:
+            failures.append(name)
+            print(f'{name}: FAIL', file=sys.stderr, flush=True)
+            if not args.keep_going:
+                return result.returncode
+        else:
+            print(f'{name}: PASS', flush=True)
+    if failures:
+        print('failed samples: ' + ', '.join(failures), file=sys.stderr)
+        return 1
+    print(f'PASS: {len(names)} Rosemary SDK samples built')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

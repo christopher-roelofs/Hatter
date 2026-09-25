@@ -1,0 +1,147 @@
+#!/usr/bin/env python3
+"""Guest-verify rebuilt 68k code-bearing cookbook packages.
+
+Each selected example is built from source, installed alongside the stock
+package, opened through the PIC-2000 UI, and compared
+by framebuffer crop.  This checks that the rebuilt package reaches the same
+application scene in the real guest, without requiring an example-specific
+visual golden.
+"""
+import argparse
+import hashlib
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+os.chdir(ROOT)
+sys.path.insert(0, str(ROOT / 'experiments' / 'objectmaker'))
+
+EXAMPLES = ('BarChart', 'BizNote', 'Circuits', 'Hanoi', 'Metric',
+            'Positioning', 'Spreadsheet', 'Whitehouse')
+SOURCE_ROOT = ROOT / 'software/68k/extracted/cookbook/Cookbook Examples'
+STOCK_ROOT = ROOT / 'software/68k/extracted/installable/cookbook'
+ROM = 'roms/Sony PIC 2000/PIC-2000.rom'
+WALK = ['--tap', '1000000,1000000,420,12',
+        '--tap', '60000000,1000000,455,258',
+        '--tap', '120000000,1000000,455,258',
+        '--tap', '180000000,1000000,455,258',
+        '--tap', '240000000,1000000,230,145']
+# Whitehouse's install receiver is iDowntown, not iHallway. The Hallway
+# route above opens the Game room when used for this package.
+WHITEHOUSE_WALK = ['--tap', '1000000,1000000,420,12',
+                   '--tap', '80000000,1000000,420,12',
+                   '--tap', '160000000,1000000,240,180']
+# Visually verified title + application crop: White House, two zero counters,
+# reset button, seal, flag and both stationery objects. Prevents two runs in
+# the wrong room from being accepted merely because their pixels agree.
+GOLDEN = {'Whitehouse':
+          '431a7de76f2969ea961390876d51c5cf8095be8c09494c0a5a079af5c9cdbb58'}
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('outdir', nargs='?', default='out/pic-68k-code')
+parser.add_argument('--example', action='append', choices=EXAMPLES)
+parser.add_argument('--profile', default='cw7',
+                    help='68k interface profile passed to ObjectMaker builder')
+parser.add_argument('--rom', default=ROM,
+                    help='PIC-2000-compatible ROM to run')
+parser.add_argument('--skip-install', action='store_true',
+                    help='reuse the stock and built installation states')
+args = parser.parse_args()
+out = Path(args.outdir)
+out.mkdir(parents=True, exist_ok=True)
+mcap = os.environ.get('MCAP', 'build/mcap')
+names = args.example or list(EXAMPLES)
+
+
+def crop(path):
+    magic, size, maximum, pixels = path.read_bytes().split(b'\n', 3)
+    if magic != b'P5' or size != b'480 320' or maximum != b'3':
+        raise RuntimeError(f'{path}: unexpected PIC framebuffer format')
+    # Exclude the clock/date and retain the application title and scene.
+    title = b''.join(pixels[y * 480:y * 480 + 110] for y in range(0, 20))
+    # The hallway's cat clock is animated by the guest scheduler.  Its tail
+    # can move between the rebuilt and stock runs even when the application
+    # scene is identical.  Exclude only that fixed clock rectangle; retain the
+    # title and the rest of the 480x246 application/room area.
+    body = bytearray()
+    for y in range(24, 270):
+        row = bytearray(pixels[y * 480:y * 480 + 480])
+        if y < 190:
+            row[0:110] = b'\0' * 110
+        body.extend(row)
+    return hashlib.sha256(title + body).hexdigest()
+
+
+def install(package, tag):
+    budget = max(2_000_000_000, package.stat().st_size * 200_000)
+    subprocess.run(['scripts/install-package-68k', str(package), str(out), tag],
+                   check=True,
+                   env={**os.environ,
+                        'INSNS': os.environ.get('INSNS', str(budget))})
+
+
+def open_scene(name, tag):
+    framebuffer = out / f'{tag}-scene.pgm'
+    with (out / f'{tag}-scene.log').open('w') as log:
+        subprocess.run([mcap, '--rom', args.rom, '--device', 'pic2000', '--headless',
+                        '--no-host-battery', '--temporary',
+                        '--load-state', str(out / f'{tag}.state'),
+                        '-n', '320000000',
+                        '--save-state', str(out / f'{tag}-scene.state'),
+                        '--dump-fb', str(framebuffer),
+                        *(WHITEHOUSE_WALK if name == 'Whitehouse' else WALK)],
+                       stdout=log, stderr=subprocess.STDOUT, check=True)
+    return crop(framebuffer)
+
+
+def check_whitehouse_reset(tag):
+    # Both counters start at zero. VerifySetToZero should return without a
+    # confirmation dialog, and the scene must survive save/restore.
+    state = out / f'{tag}-scene.state'
+    for phase, options in (
+            ('reset', ['--tap', '1000000,1000000,145,147']),
+            ('restored', [])):
+        frame = out / f'{tag}-{phase}.pgm'
+        saved = out / f'{tag}-{phase}.state'
+        with (out / f'{tag}-{phase}.log').open('w') as log:
+            subprocess.run([mcap, '--rom', args.rom, '--device', 'pic2000',
+                            '--headless', '--no-host-battery', '--temporary',
+                            '--load-state', str(state), '-n', '80000000',
+                            '--dump-fb', str(frame), '--save-state', str(saved),
+                            *options], stdout=log, stderr=subprocess.STDOUT,
+                           check=True)
+        if crop(frame) != GOLDEN['Whitehouse']:
+            raise RuntimeError(f'{tag}: unexpected scene after {phase}: {frame}')
+        state = saved
+
+
+from build_example import build_example
+from profiles import resolve
+
+interfaces = resolve(args.profile)
+
+for name in names:
+    source = SOURCE_ROOT / name
+    built = out / f'{name}-built.pkg'
+    if not args.skip_install:
+        package, missing = build_example(source, report=True,
+                                         interfaces=interfaces)
+        built.write_bytes(package)
+        if missing:
+            print(f'{name}: retained known layout gaps in {len(missing)} objects',
+                  file=sys.stderr)
+        install(built, f'{name}-built')
+        install(STOCK_ROOT / f'{name}.pkg', f'{name}-stock')
+    ours = open_scene(name, f'{name}-built')
+    stock = open_scene(name, f'{name}-stock')
+    if name in GOLDEN and stock != GOLDEN[name]:
+        raise RuntimeError(f'{name}: stock package did not reach the verified '
+                           f'application scene; inspect {out}/{name}-stock-scene.pgm')
+    if ours != stock:
+        raise RuntimeError(f'{name}: rebuilt and stock guest scenes differ')
+    if name == 'Whitehouse':
+        check_whitehouse_reset(f'{name}-built')
+    print(f'PASS: {name} rebuilt package matches stock guest scene '
+          f'({ours})')

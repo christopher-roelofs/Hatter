@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$ROOT"
+
+run_samples=1
+while (($#)); do
+    case "$1" in
+        --skip-samples) run_samples=0 ;;
+        -h|--help)
+            echo 'usage: scripts/test-toolchains [--skip-samples]'
+            exit 0
+            ;;
+        *) echo "unknown option: $1" >&2; exit 2 ;;
+    esac
+    shift
+done
+
+PYTHONPATH=toolchains/m68k python3 -m unittest discover \
+    -s toolchains/m68k -p 'test*.py'
+python3 -m unittest discover -s toolchains/mips -p 'test_*.py'
+
+if ((run_samples)); then
+    scripts/build-rosemary-samples --out out/rosemary-samples-check
+fi
+
+echo 'PASS: ObjectMaker, Rosemary, and sample-build checks'

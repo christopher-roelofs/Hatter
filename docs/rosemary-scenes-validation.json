@@ -1,0 +1,39 @@
+{
+ "package_sha256": "49fe33f8ef419bf62b7abf7a563af9d5381fbc9b57a33d86e57feb57f1403be5",
+ "package_bytes": 6836,
+ "source_sha256": [],
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/Scenes (unmodified; build_sample.py)",
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "Building": 3,
+  "TextField": 4,
+  "BorderImage": 5,
+  "Text": 6,
+  "Scene": 7,
+  "SceneAdditions": 8,
+  "Icon": 9,
+  "Image": 10,
+  "Stamp": 11,
+  "Door": 12,
+  "PristineLookupTable": 13,
+  "TextHeap": 14,
+  "StaticObjectNameDictionary": 15,
+  "ObjectValueHashTable": 16,
+  "DataList": 17,
+  "PackageData": 18,
+  "PackageExportTable": 19,
+  "PackageExportHashEntries": 20,
+  "CliqueNameTable": 21,
+  "PackageCluster": 22,
+  "UnlinkedClassWithInstances": 23
+ },
+ "methods": {},
+ "observed": "code-free package (PackageCluster root, no code attributes); installs (6.8K); Hallway -> \"Scenes\" door: the scene with its text and the \"Touch to switch scenes\" travel icon; 0 non-interrupt exceptions",
+ "bus_faults": 0,
+ "logs": [
+  "out/rosemary-sample-Scenes/*.log"
+ ],
+ "screen": "docs/images/rosemary-scenes.png"
+}

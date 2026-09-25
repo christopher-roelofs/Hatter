@@ -1,0 +1,42 @@
+{
+ "package_sha256": "e92802fe0917cb4fccbc4a39054ea80e285c81bb360b1ad5a28c5610b7fd6736",
+ "package_bytes": 15335,
+ "source_sha256": [
+  "13671ebe2b2a663c6010217e91f80570f896f562296c48009a932eb762e56e9a"
+ ],
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/ScrollableTextField (unmodified; build_sample.py)",
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "Scene": 3,
+  "Text": 4,
+  "TextField": 5,
+  "ScrollArrow": 6,
+  "PristineLookupTable": 7,
+  "TextHeap": 8,
+  "StaticObjectNameDictionary": 9,
+  "ObjectValueHashTable": 10,
+  "DataList": 11,
+  "PackageData": 12,
+  "PackageExportTable": 13,
+  "PackageExportHashEntries": 14,
+  "CliqueNameTable": 15,
+  "CodePackageCluster": 16,
+  "UnlinkedClassWithInstances": 17,
+  "ScrollBox": 18,
+  "TextScrollBox": 19
+ },
+ "methods": {
+  "TextScrollBox_AboutToShow": 3,
+  "TextScrollBox_AboutToHide": 4,
+  "TextScrollBox_Notice": 5,
+  "TextScrollBox_RevealSelection": 6
+ },
+ "observed": "installs; Hallway door opens its scene with the (empty) scrollable field; 0 non-interrupt exceptions",
+ "bus_faults": 0,
+ "logs": [
+  "out/rosemary-sample-ScrollableTextField/*.log"
+ ],
+ "screen": "docs/images/rosemary-scrollabletextfield.png"
+}

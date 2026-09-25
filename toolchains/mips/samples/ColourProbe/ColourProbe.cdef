@@ -1,0 +1,47 @@
+//
+//	HelloWorld
+//
+//	Almost the simplest Magic Capª Package
+//
+//	General Magic Developer Technical Support
+//	Copyright 1992-1997 General Magic, Inc.
+//	All rights reserved.
+//
+
+
+// This file contains the definition of new classes.  In HelloWorld.cdef,
+// we implement one new class: ColourProbe.
+
+read "MagicCap.cdef";
+
+//  **************  the class definition  **************
+//	All we need here is our new class, ColourProbe, which overrides one method, Draw().
+//	We inherit the rest of our behavior (both fields and operations) from class Viewable.
+
+define class ColourProbe;
+	inherits from Viewable;
+
+	//	There is only one method in class ColourProbe, an override of the superclass' method.
+	//	Note that when we override an operation, we do not repeat the parameters
+	//	(it is not allowed to do so) nor do we use ()s after the overridden operation.
+		
+	overrides Draw;
+end class;
+
+//	**************  Notes  *****************************
+//	All methods of a class have one implied parameter, known as self.  The self parameter
+//	represents the object id of the object whose method is being invoked.  This parameter
+//	is omitted in this .cdef file, though you must use it in the .cpp file that contains
+//	the code for class ColourProbe:
+//		Method void
+// 		Greeter_Draw(Reference self)
+
+//	For other examples of .cdef syntax, see the other sample programs as well as
+//	the system's .cdef files in :MagicDeveloper:Interfaces:DefFiles:.  You can also browse
+//	classes with Bowser Pro, which will show you the definition of each class
+//	that you browse.
+
+// this makes probe objects fileable and sendable and stuff
+define interface HelloWorldInterface "genmagic.com/HelloWorldInterface1";
+	class ColourProbe;
+end interface;

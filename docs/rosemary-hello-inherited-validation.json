@@ -1,0 +1,30 @@
+{
+  "package_sha256": "f4bca5af207031e1cd625da89cfafb3fde51cd695e4732c319ad1919d84f55a3",
+  "package_bytes": 2625,
+  "source": "toolchains/mips/hello_inherited.cpp",
+  "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+  "references": {
+    "__1d_ContentBox": "__disp2",
+    "__1d_FillBox": "__disp5",
+    "__1d_PartColor": "__disp2",
+    "__2d_Highlighted": "__disp2_1",
+    "__DispatchInheritedObjectMethod": "glue",
+    "__DispatchObjectMethod": "glue",
+    "__tv_SystemPublic_425": "vector SystemPublic 425",
+    "__tv_SystemPublic_427": "vector SystemPublic 427",
+    "_classNumber_Greeter_": "loader-resolved word"
+  },
+  "class_number_word": "globals+0x7c = 0x6B1 (runtime number of package class selector 16)",
+  "export_table": [
+    [
+      "class",
+      "@Greeter",
+      1,
+      16
+    ]
+  ],
+  "dispatch": "003CCA04 t7=0F8B; inherited: 13C96E70 ra=003CCA54 t7=0FFD class=0x6B1",
+  "screen": "box drawn",
+  "bus_faults": 0,
+  "trace": "out/rosemary-hello-sdk/inherited.log"
+}

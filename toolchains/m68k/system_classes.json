@@ -1,0 +1,507 @@
+{
+ "CardServer": {
+  "depth": 1,
+  "copies": 0,
+  "base": 0,
+  "size": 20,
+  "answers": [
+   1,
+   807
+  ]
+ },
+ "Means": {
+  "depth": 1,
+  "copies": 0,
+  "base": 58,
+  "size": 0,
+  "answers": [
+   1,
+   516
+  ]
+ },
+ "LANMeans": {
+  "depth": 2,
+  "copies": 1,
+  "base": 58,
+  "size": 16,
+  "answers": [
+   1,
+   479,
+   516,
+   561,
+   703
+  ]
+ },
+ "Server": {
+  "depth": 1,
+  "copies": 0,
+  "base": 58,
+  "size": 4,
+  "answers": [
+   1,
+   285
+  ]
+ },
+ "HardwareStream": {
+  "depth": 2,
+  "copies": 0,
+  "base": 58,
+  "size": 32,
+  "answers": [
+   1,
+   285,
+   286
+  ]
+ },
+ "CommunicationStream": {
+  "depth": 3,
+  "copies": 0,
+  "base": 58,
+  "size": 36,
+  "answers": [
+   1,
+   285,
+   286,
+   859
+  ]
+ },
+ "GMTPCommModule": {
+  "depth": 1,
+  "copies": 0,
+  "base": 58,
+  "size": 40,
+  "answers": [
+   1,
+   871
+  ]
+ },
+ "BookScene": {
+  "depth": 6,
+  "copies": 7,
+  "base": 58,
+  "size": 92,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   114,
+   132,
+   150,
+   151,
+   351,
+   352,
+   377
+  ]
+ },
+ "Box": {
+  "depth": 4,
+  "copies": 4,
+  "base": 58,
+  "size": 60,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   351,
+   352
+  ]
+ },
+ "Button": {
+  "depth": 5,
+  "copies": 5,
+  "base": 58,
+  "size": 64,
+  "answers": [
+   1,
+   22,
+   50,
+   51,
+   55,
+   80,
+   100,
+   132,
+   351,
+   352
+  ]
+ },
+ "Card": {
+  "depth": 4,
+  "copies": 4,
+  "base": 58,
+  "size": 68,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132
+  ]
+ },
+ "ChooseableTool": {
+  "depth": 1,
+  "copies": 1,
+  "base": 58,
+  "size": 4,
+  "answers": [
+   1,
+   246
+  ]
+ },
+ "ContentListView": {
+  "depth": 8,
+  "copies": 10,
+  "base": 58,
+  "size": 116,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   150,
+   218,
+   279,
+   351,
+   352,
+   457,
+   466,
+   539,
+   540,
+   785
+  ]
+ },
+ "Control": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 92,
+  "answers": [
+   1,
+   22,
+   28,
+   50,
+   55,
+   80,
+   100,
+   132,
+   351,
+   352,
+   415
+  ]
+ },
+ "Coupon": {
+  "depth": 4,
+  "copies": 4,
+  "base": 58,
+  "size": 68,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   351
+  ]
+ },
+ "DigitField": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 72,
+  "answers": [
+   1,
+   22,
+   28,
+   50,
+   55,
+   80,
+   100,
+   132,
+   264,
+   294,
+   334,
+   335,
+   351,
+   352,
+   415,
+   466
+  ]
+ },
+ "DrawerStack": {
+  "depth": 2,
+  "copies": 1,
+  "base": 49,
+  "size": 20,
+  "answers": [
+   1,
+   29,
+   55,
+   80,
+   100,
+   117,
+   141,
+   180,
+   680,
+   806
+  ]
+ },
+ "Form": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 68,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   351,
+   352
+  ]
+ },
+ "GadgetWindow": {
+  "depth": 8,
+  "copies": 4,
+  "base": 58,
+  "size": 88,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   93,
+   100,
+   132,
+   150,
+   245,
+   246,
+   349,
+   351,
+   352
+  ]
+ },
+ "IndexScene": {
+  "depth": 6,
+  "copies": 7,
+  "base": 58,
+  "size": 88,
+  "answers": []
+ },
+ "Line": {
+  "depth": 6,
+  "copies": 5,
+  "base": 58,
+  "size": 72,
+  "answers": null
+ },
+ "ListView": {
+  "depth": 7,
+  "copies": 9,
+  "base": 58,
+  "size": 104,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   150,
+   279,
+   351,
+   352,
+   466,
+   539,
+   540,
+   785
+  ]
+ },
+ "LocalRuleQualifier": {
+  "depth": 1,
+  "copies": 0,
+  "base": 58,
+  "size": 12,
+  "answers": [
+   1,
+   643,
+   752
+  ]
+ },
+ "NoteCard": {
+  "depth": 5,
+  "copies": 5,
+  "base": 58,
+  "size": 72,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   64,
+   80,
+   100,
+   132
+  ]
+ },
+ "Object": {
+  "depth": 0,
+  "copies": 0,
+  "base": 58,
+  "size": 0,
+  "answers": []
+ },
+ "RestrictedField": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 72,
+  "answers": [
+   1,
+   22,
+   28,
+   50,
+   55,
+   80,
+   100,
+   132,
+   264,
+   334,
+   335,
+   351,
+   352,
+   415,
+   466
+  ]
+ },
+ "Rule": {
+  "depth": 1,
+  "copies": 3,
+  "base": 58,
+  "size": 24,
+  "answers": [
+   1
+  ]
+ },
+ "Scene": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 84,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   114,
+   132,
+   150,
+   351,
+   352
+  ]
+ },
+ "Shape": {
+  "depth": 5,
+  "copies": 5,
+  "base": 58,
+  "size": 68,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132,
+   332,
+   350
+  ]
+ },
+ "ShapeTool": {
+  "depth": 2,
+  "copies": 2,
+  "base": 58,
+  "size": 8,
+  "answers": [
+   1,
+   246,
+   361
+  ]
+ },
+ "StackScene": {
+  "depth": 6,
+  "copies": 7,
+  "base": 58,
+  "size": 92,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   114,
+   132,
+   150,
+   351,
+   352,
+   377
+  ]
+ },
+ "Stamp": {
+  "depth": 4,
+  "copies": 4,
+  "base": 58,
+  "size": 60,
+  "answers": [
+   1,
+   22,
+   50,
+   55,
+   80,
+   100,
+   132
+  ]
+ },
+ "TextField": {
+  "depth": 5,
+  "copies": 6,
+  "base": 58,
+  "size": 72,
+  "answers": [
+   1,
+   22,
+   28,
+   50,
+   55,
+   80,
+   100,
+   132,
+   334,
+   335,
+   351,
+   352,
+   415,
+   466
+  ]
+ }
+}

@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Install the 68k Counter app through the PIC UI, launch it, and restore in JIT.
+
+Run from a checkout with the PIC ROM, cookbook package, and Storeroom state:
+  scripts/test-counter-68k [outdir] [--skip-install] [--built]
+STATE, INSNS, and MCAP have the same meaning as in install-package-68k.
+--skip-install reuses <outdir>/counter.state for the launch/restore checks.
+
+--built compiles the example from its own sources first -- the C through
+clang, the records through `class_records.py` -- and installs that instead of
+the package CodeWarrior made. The count it has to reach is the same, which is
+the point: the compiled method has to run.
+"""
+import argparse
+import hashlib
+import os
+import re
+from pathlib import Path
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+os.chdir(ROOT)
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('outdir', nargs='?', default='out/pic-68k-counter')
+parser.add_argument('--skip-install', action='store_true')
+parser.add_argument('--built', action='store_true',
+                    help='build the package from source rather than use the '
+                         'one the cookbook ships')
+args = parser.parse_args()
+out = Path(args.outdir)
+out.mkdir(parents=True, exist_ok=True)
+mcap = os.environ.get('MCAP', 'build/mcap')
+rom = 'roms/Sony PIC 2000/PIC-2000.rom'
+package = 'software/68k/extracted/installable/cookbook/Counter.pkg'
+if args.built:
+    import sys
+    sys.path.insert(0, str(ROOT / 'experiments' / 'objectmaker'))
+    from build_example import build_example
+    source = ROOT / 'software/68k/extracted/cookbook/Cookbook Examples/Counter'
+    built = out / 'Counter-built.pkg'
+    built.write_bytes(build_example(source))
+    print(f'built {built} from {source.name}: {built.stat().st_size} bytes')
+    package = str(built)
+
+
+def run(tag, state, instructions, options):
+    with (out / (tag + '.log')).open('w') as log:
+        subprocess.run([mcap, '--rom', rom, '--device', 'pic2000', '--headless',
+                        '--no-host-battery', '--load-state', str(state),
+                        '-n', str(instructions), '--dump-fb', str(out / (tag + '.pgm')),
+                        '--save-state', str(out / (tag + '.state')), *options],
+                       stdout=log, stderr=subprocess.STDOUT, check=True)
+
+
+def check_count(tag, expected):
+    # Golden crop of the count field, verified visually on the PIC-2000 ROM.
+    # It excludes the clock and any selection or animation elsewhere on screen.
+    goldens = {
+        1: 'cde4a1fd110c17f96930a6a27b1b0e7afc08c22a085998bf84047aaa8584a4aa',
+        2: '303a6d56b2bfa4f33aed5ecff3a2273544e03e42d28d122d57c475e265c2954a',
+    }
+    magic, size, maximum, pixels = (out / (tag + '.pgm')).read_bytes().split(b'\n', 3)
+    if magic != b'P5' or size != b'480 320' or maximum != b'3' or len(pixels) != 480*320:
+        raise RuntimeError('unexpected PIC framebuffer format')
+    crop = b''.join(pixels[y*480+176:y*480+306] for y in range(118, 149))
+    if hashlib.sha256(crop).hexdigest() != goldens[expected]:
+        raise RuntimeError(f'{tag}: expected Counter count {expected}; inspect {out}/{tag}.pgm')
+
+
+if not args.skip_install:
+    subprocess.run(['scripts/install-package-68k', package, str(out), 'counter',
+                    '--cpu-engine', 'interpreter'], check=True)
+    installed_log = (out / 'counter.log').read_text()
+    ran = re.search(r'68k: ran (\d+) instructions', installed_log)
+    budget = int(os.environ.get('INSNS', '2000000000'))
+    if not ran or int(ran[1]) >= budget:
+        raise RuntimeError('installer did not stop automatically before its budget')
+run('counter-running', out / 'counter.state', 180000000,
+    ['--cpu-engine', 'interpreter',
+     '--tap', '1000000,1000000,420,12',
+     '--tap', '30000000,1000000,449,253',
+     '--tap', '60000000,1000000,449,253',
+     '--tap', '90000000,1000000,449,253',
+     '--tap', '120000000,1000000,230,150'])
+check_count('counter-running', 1)
+# No engine override: exercise the normal JIT default after interpreter save.
+run('counter-restored-jit', out / 'counter-running.state', 80000000,
+    ['--tap', '1000000,1000000,420,12', '--tap', '30000000,1000000,230,150'])
+check_count('counter-restored-jit', 2)
+run('counter-resumed', out / 'counter-restored-jit.state', 20000000, [])
+check_count('counter-resumed', 2)
+built_from = 'built from source' if args.built else "ObjectMaker's"
+print(f'PASS: 68k Counter ({built_from}) installed, ran, and retained count 2 '
+      f'after JIT restore ({out})')

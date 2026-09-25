@@ -1,0 +1,48 @@
+{
+ "package_sha256": "80b688a2eaf59608f4fea776baf7635d85995592544d8b50dd52e20de2674a5e",
+ "package_bytes": 15033,
+ "source_sha256": [
+  "de49b399e217ace7ab0ef57b580d174e26c90440f8559dad3a13d7d5c25ac006"
+ ],
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/WindowTool (unmodified; build_sample.py)",
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "Box": 3,
+  "ToolButton": 4,
+  "Image": 5,
+  "TitledWindow": 6,
+  "GadgetWindow": 7,
+  "InfoWindow": 8,
+  "DenseObjectList": 9,
+  "TextField": 10,
+  "ConfirmationDialog": 11,
+  "PristineLookupTable": 12,
+  "TextHeap": 13,
+  "StaticObjectNameDictionary": 14,
+  "ObjectValueHashTable": 15,
+  "DataList": 16,
+  "PackageData": 17,
+  "PackageExportTable": 18,
+  "PackageExportHashEntries": 19,
+  "CliqueNameTable": 20,
+  "Text": 21,
+  "CodePackageCluster": 22,
+  "UnlinkedClassWithInstances": 23,
+  "ChooseableTool": 24,
+  "RestoresPreviousTool": 25,
+  "WindowTool": 26,
+  "GadgetWindowTool": 27
+ },
+ "methods": {
+  "WindowTool_TouchTarget": 3,
+  "WindowTool_CreatedWindow": 4,
+  "GadgetWindowTool_CreatedWindow": 5
+ },
+ "observed": "installs (15K); its \"windows\" tool page goes to iConstructionToolPageList, which the guest (user mode) does not show \u2014 the Tools window cycles pencils/shapes/lines/text only, as the sample's odef comments say (\"Available only in construction mode\"); 0 non-interrupt exceptions",
+ "bus_faults": 0,
+ "logs": [
+  "out/rosemary-sample-WindowTool/*.log"
+ ]
+}

@@ -1,0 +1,161 @@
+read "MagicCap.cdef";
+read "StarshipCourier.cdef";
+
+instance SoftwarePackageContents contents 'Starship Courier';
+    dateCreated: 0;
+    timeCreated: 0;
+    dateModified: 0;
+    timeModified: 0;
+    autoActivate: true;
+    installationList: (ObjectList installationList);
+    author: iGeneralMagic;
+    publisher: iGeneralMagic;
+    versionText: nilObject;
+    helpOnObjects: (ObjectList helpForObjects);
+    sceneIndexicalList: nilObject;
+    stackIndexicalList: nilObject;
+    startupScene: nilObject;
+    startupItem: nilObject;
+    creditsScene: nilObject;
+    logo: iTurkey;
+    responseCardStationery: iDefaultStationery;
+    dontDeactivate: false;
+end instance;
+
+instance ObjectList installationList;
+    entry: iInstallationQueue;
+    entry: (Scene packageScene);
+end instance;
+
+indexical iStatus = (TextField statusField);
+indexical iInitialStatus = (Text initialStatus);
+indexical iMoved = (Text movedMessage);
+indexical iAttack = (Text attackMessage);
+indexical iBlocked = (Text blockedMessage);
+indexical iWon = (Text wonMessage);
+indexical iLost = (Text lostMessage);
+
+instance ObjectList helpForObjects;
+    entry: (Scene packageScene);
+    entry: (Text helpText);
+end instance;
+
+instance Text helpText;
+    text: 'Starship Courier\nA tactical grid game for testing native MIPS packages. Tap a neighboring square to move. Reach the drone to score, but watch your energy.';
+end instance;
+
+instance Text initialStatus;
+    text: 'Tap a neighboring square to move.';
+end instance;
+
+instance Text movedMessage;
+    text: 'Courier moved.';
+end instance;
+
+instance Text attackMessage;
+    text: 'Drone intercepted!';
+end instance;
+
+instance Text blockedMessage;
+    text: 'That route is blocked.';
+end instance;
+
+instance Text wonMessage;
+    text: 'Mission complete! Press Reset to fly again.';
+end instance;
+
+instance Text lostMessage;
+    text: 'Energy depleted. Press Reset to retry.';
+end instance;
+
+instance Scene packageScene 'Starship Courier';
+    relativeOrigin: <0.0,-8.0>;
+    contentSize: <480.0,256.0>;
+    viewFlags: 0x11005200;
+    labelStyle: iBook12;
+    color: 0xFF555555;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: nilObject;
+    border: nilObject;
+    isPlace: false;
+    frozen: false;
+    useCardName: false;
+    visited: false;
+    blankTitle: false;
+    messageViewer: false;
+    suppressGrayLine: false;
+    stepBackWhenEmpty: false;
+    canDrawIn: false;
+    autoPencil: false;
+    sceneDrawer: false;
+    oneCardOnly: false;
+    ephemeral: false;
+    addToHistory: true;
+    suppressDateTime: false;
+    sceneDrawerBank: false;
+    locked: false;
+    expandMiniCards: false;
+    sceneTools: false;
+    heightResizable: false;
+    ignoreCardDefaultTool: false;
+    stepBackScene: nilObject;
+    stepBackSpot: nilObject;
+    image: nilObject;
+    additions: nilObject;
+    screen: nilObject;
+    subview: (CourierBoard board);
+    subview: (TextField statusField);
+    subview: (SimpleActionButton resetButton);
+end instance;
+
+instance TextField statusField;
+    relativeOrigin: <0.0,108.0>;
+    contentSize: <440.0,22.0>;
+    viewFlags: 0x70019200;
+    labelStyle: iBook12Center;
+    color: 0xFF000000;
+    altColor: 0xFFFFFFFF;
+    shadow: nilObject;
+    sound: nilObject;
+    border: nilObject;
+    fieldFlags: 0x80000001;
+    dataStore: (Text initialStatus);
+    baseStyle: iBook12Center;
+end instance;
+
+instance CourierBoard board;
+    relativeOrigin: <-45.0,-5.0>;
+    contentSize: <300.0,198.0>;
+    viewFlags: 0x700D1200;
+    labelStyle: iBook12;
+    color: 0xFF000000;
+    altColor: 0xFFFFFFFF;
+    shadow: nilObject;
+    sound: iTouchSound;
+    border: iStandardButtonBorderUp;
+    playerX: 1;
+    playerY: 1;
+    enemyX: 8;
+    enemyY: 4;
+    score: 0;
+    energy: 20;
+    turn: 0;
+    gameOver: false;
+    pulse: 0;
+end instance;
+
+instance SimpleActionButton resetButton 'Reset';
+    relativeOrigin: <170.0,0.0>;
+    contentSize: <90.0,27.0>;
+    viewFlags: 0x70103200;
+    labelStyle: iLargeButtonStyle;
+    color: 0xFF000000;
+    altColor: 0xFF000000;
+    shadow: nilObject;
+    sound: iTouchSound;
+    image: nilObject;
+    border: iStandardButtonBorderUp;
+    target: (CourierBoard board);
+    operation: operation_ResetGame;
+end instance;

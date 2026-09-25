@@ -1,0 +1,34 @@
+read "MagicCap.cdef";
+
+define class CourierBoard;
+    inherits from Box;
+
+    field playerX: Signed, getter, setter;
+    field playerY: Signed, getter, setter;
+    field enemyX: Signed, getter, setter;
+    field enemyY: Signed, getter, setter;
+    field score: Signed, getter, setter;
+    field energy: Signed, getter, setter;
+    field turn: Signed, getter, setter;
+    field gameOver: Boolean, getter, setter;
+    field pulse: Unsigned, getter, setter;
+
+    attribute PlayerX: Signed;
+    attribute PlayerY: Signed;
+    attribute EnemyX: Signed;
+    attribute EnemyY: Signed;
+    attribute Score: Signed;
+    attribute Energy: Signed;
+    attribute Turn: Signed;
+    attribute GameOver: Boolean;
+    attribute Pulse: Unsigned;
+
+    operation ResetGame();
+
+    overrides Draw;
+    overrides Tap;
+end class;
+
+define interface StarshipCourierInterface "genmagic.com/StarshipCourierInterface1";
+    class CourierBoard;
+end interface;

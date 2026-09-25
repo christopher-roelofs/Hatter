@@ -1,0 +1,217 @@
+{
+ "package_sha256": "6d7e1333c358a1a9dd2b56f9bc5cfffbade8a97497f9ca3762e0a4d3c43e6296",
+ "package_bytes": 17447,
+ "source": "software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/RulesSample (unmodified; build_sample.py RulesSample)",
+ "source_sha256": [
+  "763cd62bc4b686cad22f116b4f61832d3673d228191882e89a00f651178609bf",
+  "50ba723e3058ef7744b64d415f109c55b98d92b6e33789d5337ebca0a1ddc704"
+ ],
+ "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+ "classes": {
+  "SoftwarePackageContents": 1,
+  "ObjectList": 2,
+  "InstallSpecifier": 3,
+  "Text": 4,
+  "Scene": 5,
+  "Animation": 6,
+  "SceneAdditions": 7,
+  "Rule": 8,
+  "LocalRuleAction": 9,
+  "RuleTemplate": 10,
+  "Meter": 11,
+  "LocalRuleQualifier": 12,
+  "Trigger": 13,
+  "ConditionalRule": 14,
+  "Condition": 15,
+  "ScheduledRule": 16,
+  "ScheduledTime": 17,
+  "Time": 18,
+  "TimePicker": 19,
+  "ChoiceBox": 20,
+  "TextMapping": 21,
+  "PristineLookupTable": 22,
+  "TextHeap": 23,
+  "StaticObjectNameDictionary": 24,
+  "ObjectValueHashTable": 25,
+  "DataList": 26,
+  "PackageData": 27,
+  "PackageExportTable": 28,
+  "PackageExportHashEntries": 29,
+  "CliqueNameTable": 30,
+  "CodePackageCluster": 31,
+  "UnlinkedClassWithInstances": 32,
+  "RuleAction": 33,
+  "TimedEvent": 34,
+  "Box": 35,
+  "CollectingRuleAction": 36,
+  "MyPeriodicEvent": 37,
+  "MyPeriodicRule": 38,
+  "RuleBox": 39
+ },
+ "exports": [
+  [
+   "class",
+   "@CollectingRuleAction",
+   1,
+   36
+  ],
+  [
+   "class",
+   "@MyPeriodicEvent",
+   1,
+   37
+  ],
+  [
+   "class",
+   "@MyPeriodicRule",
+   1,
+   38
+  ],
+  [
+   "class",
+   "@RuleBox",
+   1,
+   39
+  ],
+  [
+   "locator",
+   "@iStampCountTrigger",
+   1,
+   204
+  ],
+  [
+   "locator",
+   "@iRotatingWorldStamp",
+   1,
+   76
+  ],
+  [
+   "locator",
+   "@iCollectionFrequencyNames",
+   1,
+   44
+  ],
+  [
+   "operation",
+   "@ServiceToCollectFrom",
+   1,
+   8
+  ],
+  [
+   "operation",
+   "@SetServiceToCollectFrom",
+   1,
+   9
+  ],
+  [
+   "operation",
+   "@CollectionFrequency",
+   1,
+   10
+  ],
+  [
+   "operation",
+   "@SetCollectionFrequency",
+   1,
+   11
+  ],
+  [
+   "operation",
+   "@TimeUntilAction",
+   1,
+   12
+  ],
+  [
+   "operation",
+   "@SetTimeUntilAction",
+   1,
+   13
+  ],
+  [
+   "operation",
+   "@HopLastStamp",
+   1,
+   14
+  ],
+  [
+   "operation",
+   "@ThrowAwayStamps",
+   1,
+   15
+  ],
+  [
+   "operation",
+   "@LookForAnimation",
+   1,
+   16
+  ],
+  [
+   "operation",
+   "@LookForExtraStamps",
+   1,
+   17
+  ]
+ ],
+ "fixups": {
+  "0x44c": [
+   "class-number",
+   "MyPeriodicEvent"
+  ],
+  "0x450": [
+   "class-number",
+   "MyPeriodicRule"
+  ],
+  "0x454": [
+   "class-number",
+   "RuleBox"
+  ],
+  "0x458": [
+   "indexical-base",
+   "SystemPublic"
+  ],
+  "0x45c": [
+   "local-locator",
+   "iCollectionFrequencyNames"
+  ],
+  "0x460": [
+   "local-locator",
+   "iRotatingWorldStamp"
+  ],
+  "0x464": [
+   "local-locator",
+   "iStampCountTrigger"
+  ],
+  "0x468": [
+   "operation-number",
+   "CollectionFrequency"
+  ],
+  "0x46c": [
+   "operation-number",
+   "ServiceToCollectFrom"
+  ],
+  "0x470": [
+   "operation-number",
+   "SetTimeUntilAction"
+  ],
+  "0x474": [
+   "operation-number",
+   "TimeUntilAction"
+  ]
+ },
+ "observed": {
+  "before_fix": "Exceptions_Fail ra=13CCEF9C (CodeHandler_InitializeCodeGlobals+0x94) then PackageCluster_ActivatePackage+0x114; DynamicInterchangeTable_FindExport returned 3 for the kind-3 @CollectionFrequency lookup (component number 0) because the cluster operationBase1/operationCount were 0",
+  "after_fix": "install: 1 Exceptions_Fail, from Actor_FailSoon <- PCLinkServer_CleanUpListenerActor (PC Link hangup); activation: RulesSample door in the Hallway; door tap opens the scene with the Stamps RuleBox; 0 Exceptions_Fail / Actor_FailSoon while opening"
+ },
+ "screen": "docs/images/rosemary-rulessample.png",
+ "bus_faults": 0,
+ "logs": {
+  "fixed.log": [
+   "[watch] 13C7CABC #1 at +1864512253 ra=13CBE62C a0=0002CDB4 a1=00000000 a2=003F5F60 t7=000001A0 v0=13C7CABC s0=00045D9C s1=00000001 s2=0002CDB4 gp=0000E020 sp=00"
+  ],
+  "fs.log": [
+   "[watch] 13CBE6B8 #1 at +1864503897 ra=13E831C0 a0=00045D9C a1=0002CDB4 a2=0003199C t7=00000888 v0=13CBE6B8 s0=00000001 s1=00045D9C s2=00000404 gp=0000E020 sp=00"
+  ],
+  "opened.log": [],
+  "scene.log": []
+ }
+}

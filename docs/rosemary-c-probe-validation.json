@@ -1,0 +1,43 @@
+{
+  "package_sha256": "54b3273f052d215c7eeb0a677e8bb8ca352f6fca4b5ffad47f6b80ffc562895b",
+  "package_bytes": 2083,
+  "rom_sha256": "fee43c259942baa0fe893be583e41800935a2e06a5dbdeb7ab83739a88aa00f8",
+  "source": "toolchains/mips/c_probe.c",
+  "source_sha256": "b404fe5f86b8c31cc9129b41b7e4c48acec3cb85d515716d8f05ac87ed81c3a4",
+  "toolchain": {
+    "compiler": "clang-18 MIPS-I o32 PIC",
+    "linker": "ld.lld-18 -shared",
+    "gp_prologues_patched": 1
+  },
+  "code_bytes": 220,
+  "globals_bytes": 80,
+  "entry_offset": 0,
+  "observed_ram_entry": "0x003CCB14",
+  "observed_gp_on_entry": "0x003CCAB8",
+  "rom_calls_from_c": {
+    "Object_Name": "ra 0x003CCB48",
+    "Object_SetName": "ra 0x003CCB60, a1 = Name result",
+    "Sound_Honk": "ra 0x003CCB94"
+  },
+  "globals_after_three_opens": {
+    "counter_offset": "0x40",
+    "counter": "0x565C74",
+    "expected": "0x565C74",
+    "got_page_entry": "0x003CCAB8 (= globals base)",
+    "stub_got_entries": [
+      "0x003CCBC8",
+      "0x003CCBDC",
+      "0x003CCBB4"
+    ],
+    "dispatchers": [
+      "0x13EB8050",
+      "0x13EB8048",
+      "0x13EB8038",
+      "0x13EB8040"
+    ]
+  },
+  "opens": 3,
+  "bus_faults": 0,
+  "trace": "out/rosemary-c-probe/dispatched.log",
+  "state": "out/rosemary-c-probe/dispatched.state"
+}
