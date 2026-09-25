@@ -21,7 +21,9 @@ measured bottleneck before considering a native rewrite.
 - `docs/`: package-format research, build traces, and validation evidence.
 - `software/`: local, ignored historical SDKs and package corpus. The source
   distributions are not committed; preserve this directory when cloning or
-  backing up the workspace.
+  backing up the workspace. This includes the CW7/CW8 68k materials, MIPS
+  Magic Developer SDK, and the CodeWarrior Pro 1 Windows archive. The running
+  classic-Mac VM remains with the emulator workspace.
 - `packages/`: ignored local package corpus used by format-oracle tests.
 
 ## Quick checks
