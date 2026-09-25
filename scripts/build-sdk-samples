@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build every preserved Rosemary SDK sample from its source directory.
+"""Build every preserved Magic Developer SDK sample from its source directory.
 
 This is a source/build smoke matrix, not a guest-behavior test.  It is useful
 for catching front-end or package-writer regressions across the whole SDK
@@ -22,7 +22,7 @@ DEFAULT_SAMPLES = (
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out', type=Path, default=ROOT / 'out/rosemary-samples')
+    parser.add_argument('--out', type=Path, default=ROOT / 'out/sdk-samples')
     parser.add_argument('--sample', action='append', choices=DEFAULT_SAMPLES,
                         help='build only this sample; may be repeated')
     parser.add_argument('--keep-going', action='store_true',
@@ -46,7 +46,7 @@ def main(argv=None):
     if failures:
         print('failed samples: ' + ', '.join(failures), file=sys.stderr)
         return 1
-    print(f'PASS: {len(names)} Rosemary SDK samples built')
+    print(f'PASS: {len(names)} Magic Developer SDK samples built')
     return 0
 
 

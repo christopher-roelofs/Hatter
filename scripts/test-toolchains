@@ -22,7 +22,7 @@ PYTHONPATH=toolchains/m68k python3 -m unittest discover \
 python3 -m unittest discover -s toolchains/mips -p 'test_*.py'
 
 if ((run_samples)); then
-    scripts/build-rosemary-samples --out out/rosemary-samples-check
+    scripts/build-sdk-samples --out out/sdk-samples-check
 fi
 
 echo 'PASS: ObjectMaker, Rosemary, and sample-build checks'

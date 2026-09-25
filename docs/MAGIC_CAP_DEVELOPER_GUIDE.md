@@ -16,11 +16,9 @@ not share a binary package format or an ABI. A source project can share its
 class design, object graph, and most application logic, but it should be
 built as two targets with target-specific interfaces and implementation files.
 
-This repository is an evidence-based reconstruction. Where a statement comes
-from an original SDK manual, source example, ROM trace, or decoded package it
-is treated as established. Where the original tools or a ROM version have not
-been reproduced, the limitation is called out instead of being hidden behind
-a plausible-looking abstraction.
+The host builders reproduce the parts of the original development workflow
+needed by the included examples. Target-specific behavior still needs testing
+in a matching Magic Cap guest.
 
 ## Start here
 
@@ -43,13 +41,11 @@ For 68k, start with `Counter` or `TemplateWithButtons`. For MIPS, start with
 
 Useful repository entry points:
 
-- [68k package format and ObjectMaker reconstruction](OBJECTMAKER_FORMAT.md)
-- [68k/MIPS package resources](PACKAGE_BUILDING.md)
+- [Set up the local SDKs and compilers](SETUP.md)
 - [MIPS SDK README](../software/mips/sdk/README.md)
-- [MIPS build trace](ROSEMARY_BUILD_TRACE.md)
-- [MIPS guest testing](ROSEMARY_ROM_TESTING.md)
-- [68k package inspector](../toolchains/m68k/README.md)
-- [CodeWarrior/Magic Developer binary analysis](GHIDRA_CODEWARRIOR_ANALYSIS.md)
+- [68k build workflow](../toolchains/m68k/README.md)
+- [MIPS build workflow](../toolchains/mips/README.md)
+- [Cross-target game example](../examples/mips/Sokoban/README.md)
 
 ## The Magic Cap object model
 
@@ -395,12 +391,9 @@ the 1.5 class, operation, and intrinsic definitions are not interchangeable
 with 1.0 definitions. `Universal` is a compatibility profile, not proof that
 one package will run unchanged on every ROM.
 
-The preserved CW8 files do not provide a clearly newer standalone ObjectMaker.
-For package serialization, the current implementation therefore follows the
-CW7 ObjectMaker behavior and uses CW8 primarily as a source for 1.5 headers,
-target options, and build conventions. See
-[the Ghidra CodeWarrior report](GHIDRA_CODEWARRIOR_ANALYSIS.md#cw8-findings)
-for the tool and definition inventory.
+The host package builder uses CW8's 1.5 interfaces for the corresponding
+profile. It does not require running CodeWarrior or ObjectMaker on a classic
+Mac.
 
 ## Magic Cap 3.1: MIPS development
 
@@ -579,10 +572,8 @@ To run the repository-level native and host-toolchain regression checks:
 scripts/test-toolchains
 ```
 
-This builds the emulator, runs CTest and both Python research suites, and
-rebuilds all 17 preserved Rosemary samples. Add `--guest-68k` for the complete
-Magic Cap 1.5 PIC-2000 package matrix; that run is intentionally separate
-because it executes billions of modeled guest instructions.
+This runs the 68k and MIPS host regression suites and rebuilds all 17
+preserved MIPS SDK samples. It does not build or run the emulator.
 
 ### 68k loop
 
@@ -596,31 +587,16 @@ python3 toolchains/m68k/build_example.py \
 python3 toolchains/m68k/inspect_package.py --fields --code \
   out/Counter.pkg
 
-# Run the known end-to-end guest check.
-scripts/test-counter-68k out/pic-68k-counter --built
+# Install and exercise the package with the matching ROM in magicrecomp.
 ```
 
-For data-only scene packages, use `scripts/test-template-68k`. For the code
-examples, `scripts/test-code-examples-68k` installs rebuilt and stock packages
-and compares their guest scenes; large historical packages may require a
-larger instruction budget or a profile-specific ROM state. The repository's
-local Magic Cap 1.5 target is the Sony PIC-2000 image. Select its CW8-era
-interface profile explicitly when validating 1.5 packages:
-
-```sh
-INSNS=2000000000 scripts/test-code-examples-68k out/pic-68k-15 \
-  --profile 1.5 --rom 'roms/Sony PIC 2000/PIC-2000.rom'
-```
-
-The test harness reads CW8's precompiled `ClassNumbers.h` and
-`OperationNumbers.h` when the selected profile has no `*.Def` tables. This is
-important for 1.5 and Universal builds; using the default `cw7` profile would
-test the same source against Magic Cap 1.0 numbering instead.
+Select the CW8-era 1.5 profile explicitly for Magic Cap 1.5 devices. Guest
+installation and behavior testing belong to the sibling `magicrecomp`
+workspace.
 
 ### MIPS loop
 
-The reproducible Linux-side examples and their exact commands are maintained
-in [ROSEMARY_BUILD_TRACE.md](ROSEMARY_BUILD_TRACE.md). The general loop is:
+The MIPS builder accepts an SDK sample name or a project directory:
 
 ```sh
 python3 toolchains/mips/build_sample.py \
@@ -629,7 +605,7 @@ python3 toolchains/mips/build_sample.py \
 python3 toolchains/mips/inspect_format.py path/to/package.pkg
 
 # Build the complete preserved SDK sample matrix:
-scripts/build-rosemary-samples --out out/rosemary-samples
+scripts/build-sdk-samples --out out/sdk-samples
 ```
 
 Use the sample's `.cdef`, `.odef`, and generated make inputs as the authority;

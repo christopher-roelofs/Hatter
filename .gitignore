@@ -16,4 +16,3 @@ __pycache__/
 # Guest ROMs, emulator state, and user data are not development-tool sources.
 /roms/
 /states/
-/packages/

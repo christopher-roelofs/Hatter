@@ -1,48 +1,54 @@
-# Hatter
+# Hatter — build Magic Cap software
 
-Hatter is the development-tooling workspace for Magic Cap packages. Work on
-the 68k and MIPS package builders, inspectors, and sample
-applications continues here. The emulator remains in the sibling
-`magicrecomp` repository.
+Hatter is the source workspace for writing Magic Cap applications. It provides
+host-side package builders for Magic Cap 1.0/1.5 (68k) and 3.x (MIPS), working
+application examples, package inspectors, and regression tests. The sibling
+`magicrecomp` repository contains the emulator and the reverse-engineering
+research that established these formats; Hatter does not need Ghidra to build
+software.
 
-The current builders are Python programs that invoke native cross-compilers.
-Keep the Python CLIs and tests as the reference implementation; optimize a
-measured bottleneck before considering a native rewrite.
+## Start a project
 
-## Layout
+Install the [local SDK dependencies](docs/SETUP.md) first. The simplest route
+is to copy a working example, edit its source, then build its package:
 
-- `toolchains/m68k/`: 68k Magic Cap 1.0/1.5 package tooling.
-- `toolchains/mips/`: MIPS Magic Cap 3.x package tooling.
-- `examples/mips/`: original MIPS game sources and host rules tests.
-- `examples/sokoban68k/`: 68k adapter for the shared Sokoban source.
-- `scripts/`: package build and guest-test helpers. `test-toolchains` runs the
-  standalone host checks. Guest-test helpers still expect the sibling
-  emulator checkout and are not standalone.
-- `docs/`: package-format research, build traces, and validation evidence.
-- `software/`: local, ignored historical SDKs and package corpus. The source
-  distributions are not committed; preserve this directory when cloning or
-  backing up the workspace. This includes the CW7/CW8 68k materials, MIPS
-  Magic Developer SDK, and the CodeWarrior Pro 1 Windows archive. The running
-  classic-Mac VM remains with the emulator workspace.
-- `packages/`: ignored local package corpus used by format-oracle tests.
+| Target | Start from | Build command |
+| --- | --- | --- |
+| 68k 1.0/1.5 | `software/68k/extracted/cookbook/Cookbook Examples/Counter` or `examples/sokoban68k/` | `python3 toolchains/m68k/build_example.py <project-dir> --profile 1.5 -o out/MyApp.pkg` |
+| MIPS 3.x | `software/mips/sdk/extracted/MagicDeveloper/MagicDeveloper/Samples/HelloWorld` or `examples/mips/Sokoban/` | `python3 toolchains/mips/build_sample.py <project-dir> --out out/MyApp` |
 
-## Quick checks
+Run these from the Hatter root. Use `--profile 1.0` for older 68k ROMs. For a
+cross-target game, [Magic Sokoban](examples/mips/Sokoban/README.md) and its
+[68k adaptation](examples/sokoban68k/README.md) demonstrate shared rules with
+target-specific package definitions.
 
-Run from this repository root:
+The [developer guide](docs/MAGIC_CAP_DEVELOPER_GUIDE.md) explains classes,
+objects, methods, Magic Script, and target differences. Each toolchain has a
+short [68k](toolchains/m68k/README.md) or [MIPS](toolchains/mips/README.md)
+workflow guide.
+
+## Verify and inspect
 
 ```sh
-python3 -m unittest discover -s toolchains/m68k -p 'test_*.py'
-python3 -m unittest discover -s toolchains/mips -p 'test_*.py'
-scripts/build-rosemary-samples --sample HelloWorld
+scripts/test-toolchains                    # host tests and 17 SDK sample builds
+python3 toolchains/m68k/inspect_package.py --fields out/MyApp.pkg
+python3 toolchains/mips/inspect_format.py out/MyApp/MyApp.pkg
 ```
 
-The historical SDK assets must be present at the paths documented in
-[`docs/PACKAGE_BUILDING.md`](docs/PACKAGE_BUILDING.md). Building MIPS packages
-also requires Clang/LLVM 18; building 68k native packages requires the
-`m68k-linux-gnu` cross-compiler. See the tooling READMEs for exact commands.
+The inspectors are useful for checking a package before installing it. Runtime
+installation and guest testing use the sibling emulator; they are not part of
+the package compiler. Build outputs are written under ignored `out/`.
 
-This repository was split from `magicrecomp` on 2026-09-25. The original files
-were copied, not deleted, so existing emulator workflows continue to work.
-Hatter is the source of truth for subsequent development-tool changes. Guest
-runtime tests may still need the sibling emulator until their harnesses are
-fully decoupled.
+## Layout and boundary
+
+- `toolchains/`: maintained package builders, their required modules, and
+  regression tests.
+- `examples/`: original application source; never substitute a generated
+  package in `out/` for this source.
+- `docs/`: developer instructions, not reverse-engineering logs.
+- `software/`: ignored local copies of historical SDK interfaces, tools,
+  source samples, and package fixtures. See [setup](docs/SETUP.md); these
+  archives are not committed to Git.
+
+The builders are Python programs that invoke native cross-compilers. A native
+rewrite is not planned without a measured bottleneck.
