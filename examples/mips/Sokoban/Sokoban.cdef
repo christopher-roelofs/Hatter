@@ -31,6 +31,6 @@ define class SokobanBoard;
     overrides Draw;
     overrides Tap;
 end class;
-define interface SokobanInterface "magicrecomp.org/SokobanInterface1";
+define interface SokobanInterface "Hatter/SokobanInterface1";
     class SokobanBoard;
 end interface;

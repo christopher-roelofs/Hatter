@@ -2,8 +2,9 @@
 
 This directory holds only the historical inputs needed to build and test
 Hatter projects. Its contents are ignored by Git except for this map. Copy
-them from the complete archives in the sibling `magicrecomp` repository when
-setting up a fresh checkout; see [setup](../docs/SETUP.md).
+them from the complete archives in the Magic Cap preservation archive when
+setting up a fresh checkout; see [setup](../docs/SETUP.md) and
+[package resources](../docs/PACKAGE_BUILDING.md).
 
 ```text
 sdk/
@@ -26,4 +27,4 @@ The installer and extraction directory names are deliberately not part of
 this layout. The two 1.0 directories contain different interface revisions;
 files with the same name are not always interchangeable. Precompiled binaries,
 manifests, and historical compiler tools are not needed by the host builders.
-The full original distributions remain in `magicrecomp`.
+The full original distributions remain in the preservation archive.

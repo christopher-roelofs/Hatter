@@ -30,8 +30,10 @@ builder does not need the historical compiler binaries or libraries.
 The local copy retains the Apollo headers used by this builder, not the
 Sputnik or Macintosh Simulator variants. The 68k copy similarly omits debug
 interfaces and keeps the 1.0/1.5 profiles used by the host builder. Restore
-additional profiles from the complete archives in `magicrecomp` if future
-toolchain work needs them.
+additional profiles from the complete archives in the Magic Cap preservation
+archive (`Software/68k/CodeWarrior/`, `Software/MIPS/SDK/`) if future
+toolchain work needs them; [package resources](PACKAGE_BUILDING.md) lists
+what each archive supplies.
 The 68k examples also use `sdk/68k/samples/projects/` as starter projects;
 the matching `samples/packages/` and `sdk/68k/fixtures/` are test inputs.
 Hatter's local workspace contains the necessary interfaces and sample sources,
@@ -49,4 +51,5 @@ scripts/test-toolchains
 
 The test script builds the preserved SDK samples as well as running host
 regressions. It does not require or run the emulator. Package installation
-and guest behavior are validated with `magicrecomp` separately.
+and guest behavior are validated separately with the MagicHat emulator
+(`mhat`); see [guest testing](ROSEMARY_ROM_TESTING.md).

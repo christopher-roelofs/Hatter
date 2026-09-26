@@ -424,8 +424,10 @@ all outputs → BuildMagicCapPackage → frozen package
 The original environment expected MPW on a Power Macintosh and the SDK's
 compiler binaries and libraries. Hatter's host toolchain does not invoke those
 historical binaries; its local SDK copy contains the interfaces and samples
-needed by the modern builders. The complete original distribution remains in
-the sibling `magicrecomp` workspace.
+needed by the modern builders. The complete original distribution is kept in
+the Magic Cap preservation archive (`Software/MIPS/SDK/magicdeveloper.sit`).
+The [Rosemary build trace](ROSEMARY_BUILD_TRACE.md) records how the SDK's
+pipeline maps onto the host builder.
 
 ### `.cdef`: classes and interfaces
 
@@ -585,12 +587,11 @@ python3 toolchains/m68k/build_example.py \
 python3 toolchains/m68k/inspect_package.py --fields --code \
   out/Counter.pkg
 
-# Install and exercise the package with the matching ROM in magicrecomp.
+# Install and exercise the package with the matching ROM in MagicHat.
 ```
 
 Select the 1.5 profile explicitly for Magic Cap 1.5 devices. Guest
-installation and behavior testing belong to the sibling `magicrecomp`
-workspace.
+installation and behavior testing use the separate MagicHat emulator (`mhat`).
 
 ### MIPS loop
 

@@ -136,7 +136,7 @@ Instance Telename 2;
  identity: (OctetString 13);
 End Instance;
 Instance OctetString 9;
- data: 'magicrecomp.org';
+ data: 'Hatter';
 End Instance;
 Instance OctetString 13;
  data: 'Magic Sokoban 68k';
