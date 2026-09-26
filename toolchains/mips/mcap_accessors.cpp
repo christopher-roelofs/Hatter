@@ -1,5 +1,5 @@
 /* Field accessor runtime for host-built packages: a port of the SDK's
- * SeparatePackageLib.o helpers (out/rosemary-inspection/accessor-helpers.txt).
+ * SeparatePackageLib.o helpers, from its disassembly in the Rosemary SDK.
  *
  * A Reference points at a word holding the object's address; the word
  * before it is a tag.  Reads: tag bit 31 clear -> direct; (tag >> 24) & 7

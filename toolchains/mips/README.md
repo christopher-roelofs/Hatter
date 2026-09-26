@@ -32,7 +32,10 @@ and format errors; it does not claim that a package will install on every ROM.
 Run the host regression suite and sample matrix with `scripts/test-toolchains`.
 See [setup](../../docs/SETUP.md) for the required SDK path and cross-compiler
 versions, and the [developer guide](../../docs/MAGIC_CAP_DEVELOPER_GUIDE.md)
-for class and object design.
+for class and object design. The [container formats](../../docs/ROSEMARY_CONTAINER_FORMATS.md),
+[SDK build trace](../../docs/ROSEMARY_BUILD_TRACE.md) and
+[guest testing notes](../../docs/ROSEMARY_ROM_TESTING.md) record what the
+builder reproduces and how it was validated.
 
 This builder has been exercised with all 17 preserved SDK samples, but Magic
 Cap 3.x ROM profiles and unsupported C++/ABI features still need target-specific

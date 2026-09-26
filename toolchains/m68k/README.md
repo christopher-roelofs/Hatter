@@ -29,7 +29,9 @@ python3 toolchains/m68k/inspect_package.py --fields --code out/Counter.pkg
 methods and leaves unknown fields explicit. Run the host regression suite and
 SDK sample builds with `scripts/test-toolchains`. See [setup](../../docs/SETUP.md)
 for local SDK requirements and the [developer guide](../../docs/MAGIC_CAP_DEVELOPER_GUIDE.md)
-for source conventions and object-model details.
+for source conventions and object-model details. The package container these
+tools read and write is specified in the
+[68k format notes](../../docs/OBJECTMAKER_FORMAT.md).
 
 The host build does not establish compatibility with every 68k ROM. Install
 and exercise a package in the matching guest before shipping it.
